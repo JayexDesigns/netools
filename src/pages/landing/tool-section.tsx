@@ -1,6 +1,6 @@
-import ToolCard from "@/components/landing/tool-card";
 import {Collapsible, CollapsibleContent, CollapsibleTrigger} from "@/components/ui/collapsible";
 import type {ToolSection as ToolSectionData} from "@/data/tools";
+import ToolCard from "@/pages/landing/tool-card";
 import {cn} from "cn";
 import {ChevronDownIcon} from "lucide-react";
 

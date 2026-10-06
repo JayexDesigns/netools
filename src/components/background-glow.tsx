@@ -13,7 +13,7 @@ export default function BackgroundGlow({
 	}, [intensity, baseFrequency, seed, tileSize]);
 
 	return (
-		<div className="top-0 absolute bg-[radial-gradient(ellipse_80%_60%_at_50%_0%,var(--color-primary-800)_0%,var(--color-background)_100%)] lg:bg-[radial-gradient(ellipse_50%_60%_at_50%_0%,var(--color-primary-800)_0%,var(--color-background)_100%)] w-full min-h-screen overflow-hidden pointer-events-none select-none">
+		<div className="top-0 -z-10 absolute bg-[radial-gradient(ellipse_80%_60%_at_50%_0%,var(--color-primary-800)_0%,var(--color-background)_100%)] lg:bg-[radial-gradient(ellipse_50%_60%_at_50%_0%,var(--color-primary-800)_0%,var(--color-background)_100%)] w-full min-h-screen overflow-hidden pointer-events-none select-none">
 			<div
 				aria-hidden="true"
 				className="absolute inset-0 bg-background pointer-events-none"

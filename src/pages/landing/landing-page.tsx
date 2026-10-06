@@ -1,6 +1,6 @@
-import BackgroundGlow from "@/components/landing/background-glow";
-import Hero from "@/components/landing/hero";
-import ToolsExplorer from "@/components/landing/tools-explorer";
+import BackgroundGlow from "@/components/background-glow";
+import Hero from "@/pages/landing/hero";
+import ToolsExplorer from "@/pages/landing/tools-explorer";
 
 export default function LandingPage() {
 	return (

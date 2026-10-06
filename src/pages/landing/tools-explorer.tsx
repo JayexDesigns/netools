@@ -1,7 +1,7 @@
-import SearchBar from "@/components/landing/search-bar";
-import ToolSection from "@/components/landing/tool-section";
 import {Button} from "@/components/ui/button";
 import {toolSections} from "@/data/tools";
+import SearchBar from "@/pages/landing/search-bar";
+import ToolSection from "@/pages/landing/tool-section";
 import {SearchIcon} from "lucide-react";
 import {useEffect, useMemo, useState} from "react";
 
