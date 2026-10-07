@@ -49,16 +49,16 @@
 }
 
 @theme {
-	--color-primary-50: oklch(0.980 0.038 137);
+	--color-primary-50: oklch(0.98 0.038 137);
 	--color-primary-100: oklch(0.956 0.088 137);
 	--color-primary-200: oklch(0.932 0.143 137);
 	--color-primary-300: oklch(0.909 0.198 137);
 	--color-primary-400: oklch(0.885 0.215 137);
 	--color-primary-500: oklch(0.861 0.224 137);
 	--color-primary-600: oklch(0.755 0.222 137);
-	--color-primary-700: oklch(0.650 0.197 137);
-	--color-primary-800: oklch(0.540 0.160 137);
-	--color-primary-900: oklch(0.430 0.120 137);
+	--color-primary-700: oklch(0.65 0.197 137);
+	--color-primary-800: oklch(0.54 0.16 137);
+	--color-primary-900: oklch(0.43 0.12 137);
 	--color-primary-950: oklch(0.305 0.072 137);
 }
 
@@ -133,7 +133,7 @@
 
 @layer base {
 	* {
-		@apply border-border outline-ring/50;
+		@apply border-border outline-ring/50 selection:bg-primary-500/80 selection:text-background;
 	}
 	body {
 		@apply bg-background text-foreground;

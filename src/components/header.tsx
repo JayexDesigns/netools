@@ -25,12 +25,12 @@ export function Header() {
 								</NavigationMenuLink>
 							</NavigationMenuItem>
 							<NavigationMenuItem>
-								<NavigationMenuTrigger className="data-open:bg-primary-300/20 data-open:hover:bg-primary-300/20 data-popup-open:hover:bg-primary-300/20 data-open:focus:bg-primary-300/20 data-popup-open:bg-primary-300/20 data-popup-open:focus:bg-primary-300/20 hover:bg-primary-300/20 focus:bg-primary-300/20">Mock 2</NavigationMenuTrigger>
+								<NavigationMenuTrigger className="data-open:bg-primary-300/20 data-open:hover:bg-primary-300/20 data-popup-open:bg-primary-300/20 data-popup-open:hover:bg-primary-300/20 data-open:focus:bg-primary-300/20 data-popup-open:focus:bg-primary-300/20 hover:bg-primary-300/20 focus:bg-primary-300/20">TLDR</NavigationMenuTrigger>
 								<NavigationMenuContent className="flex flex-col px-3 py-2">
-									<NavigationMenuLink render={<Link to="/tldr" />} closeOnClick>
-										TLDR 1
+									<NavigationMenuLink render={<Link to="/tldr-curl" />} closeOnClick>
+										curl
 									</NavigationMenuLink>
-									<NavigationMenuLink render={<Link to="/tldr" />} closeOnClick>
+									<NavigationMenuLink render={<Link to="/tldr-curl" />} closeOnClick>
 										TLDR 2
 									</NavigationMenuLink>
 								</NavigationMenuContent>
@@ -38,7 +38,7 @@ export function Header() {
 						</NavigationMenuList>
 					</NavigationMenu>
 
-					<Separator orientation="vertical" className="w-px h-6" />
+					<Separator orientation="vertical" />
 
 					<a href={GITHUB_URL} target="_blank" rel="noreferrer noopener" aria-label="GitHub profile" className="flex justify-center items-center p-2 rounded-xl outline-none focus-visible:ring-3 focus-visible:ring-ring/30 text-muted-foreground hover:text-foreground transition-colors">
 						<GithubLight className="dark:hidden size-5" />
