@@ -22,7 +22,7 @@ export default function ToolSection({section, open, onOpenChange}: ToolSectionPr
 			<CollapsibleContent className="pt-4 data-closed:animate-out data-open:animate-in duration-200 data-open:fade-in-0 data-closed:fade-out-0">
 				<div className="gap-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
 					{section.tools.map(tool => (
-						<ToolCard key={tool.id} tool={tool} />
+						<ToolCard key={tool.url} tool={tool} />
 					))}
 				</div>
 			</CollapsibleContent>
