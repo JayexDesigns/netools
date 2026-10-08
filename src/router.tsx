@@ -23,6 +23,7 @@ import TLDRss from "@/pages/tools/tldr-ss";
 import TLDRssh from "@/pages/tools/tldr-ssh";
 import TLDRtcpdump from "@/pages/tools/tldr-tcpdump";
 import TLDRtraceroute from "@/pages/tools/tldr-traceroute";
+import TLDRwget from "@/pages/tools/tldr-wget";
 import {Outlet, createRootRoute, createRoute, createRouter} from "@tanstack/react-router";
 
 const rootRoute = createRootRoute({
@@ -162,7 +163,13 @@ const tldrTracerouteRoute = createRoute({
 	component: TLDRtraceroute
 });
 
-const routeTree = rootRoute.addChildren([indexRoute, tldrArpRoute, tldrCurlRoute, tldrDigRoute, tldrFtpRoute, tldrIpRoute, tldrIperf3Route, tldrIwRoute, tldrMtrRoute, tldrNcRoute, tldrNetworkctlRoute, tldrNmapRoute, tldrPingRoute, tldrRouteRoute, tldrRsyncRoute, tldrScpRoute, tldrSftpRoute, tldrSsRoute, tldrSshRoute, tldrTcpdumpRoute, tldrTracerouteRoute]);
+const tldrWgetRoute = createRoute({
+	getParentRoute: () => rootRoute,
+	path: "/tldr-wget",
+	component: TLDRwget
+});
+
+const routeTree = rootRoute.addChildren([indexRoute, tldrArpRoute, tldrCurlRoute, tldrDigRoute, tldrFtpRoute, tldrIpRoute, tldrIperf3Route, tldrIwRoute, tldrMtrRoute, tldrNcRoute, tldrNetworkctlRoute, tldrNmapRoute, tldrPingRoute, tldrRouteRoute, tldrRsyncRoute, tldrScpRoute, tldrSftpRoute, tldrSsRoute, tldrSshRoute, tldrTcpdumpRoute, tldrTracerouteRoute, tldrWgetRoute]);
 
 const router = createRouter({
 	routeTree,

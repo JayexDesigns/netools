@@ -2,12 +2,10 @@ import BackgroundGlow from "@/components/background-glow";
 import CodeBlock from "@/components/code-block";
 import {ExternalLinkIcon} from "lucide-react";
 
-const INLINE_CODE_CLASS = "bg-muted border border-border rounded-md px-1.5 py-0.5 font-mono text-[0.85em] text-foreground";
-
 function formatDescription(description: string) {
 	return description.split("`").map((segment, index) =>
 		index % 2 === 1 ? (
-			<code key={index} className={INLINE_CODE_CLASS}>
+			<code key={index} className="bg-muted px-1.5 py-0.5 border border-border rounded-md font-mono text-[0.85em] text-foreground">
 				{segment}
 			</code>
 		) : (
@@ -38,7 +36,7 @@ export default function TLDR({command, characteristics, manualURL, examples}: tl
 					</div>
 
 					<p>
-						A simplified manual with usage examples for the <code className={INLINE_CODE_CLASS}>{command}</code> command.
+						A simplified manual with usage examples for the <code className="bg-muted px-1.5 py-0.5 border border-border rounded-md font-mono text-[0.85em] text-foreground">{command}</code> command.
 					</p>
 
 					<ul className="flex flex-col gap-1.5 pl-5 text-muted-foreground marker:text-primary-500 text-sm leading-relaxed list-disc">

@@ -1,11 +1,40 @@
 import {NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger} from "@/components/ui/navigation-menu";
+import {ScrollArea} from "@/components/ui/scroll-area";
 import {Separator} from "@/components/ui/separator";
 import {GithubDark} from "@/components/ui/svgs/githubDark";
 import {GithubLight} from "@/components/ui/svgs/githubLight";
+import {toolSections, type ToolSection} from "@/data/tools";
 import {Link} from "@tanstack/react-router";
 import {Network} from "lucide-react";
 
 const GITHUB_URL = "https://github.com/JayexDesigns";
+
+// Strip the section title prefix on tools when it matches.
+function toolLabel(section: ToolSection, name: string) {
+	return name.startsWith(`${section.title} `) ? name.slice(section.title.length + 1) : name;
+}
+
+function SectionMenu({section}: {section: ToolSection}) {
+	return (
+		<NavigationMenuItem>
+			<NavigationMenuTrigger className="data-open:bg-primary-300/20 data-open:hover:bg-primary-300/20 data-popup-open:hover:bg-primary-300/20 data-open:focus:bg-primary-300/20 data-popup-open:bg-primary-300/20 data-popup-open:focus:bg-primary-300/20 hover:bg-primary-300/20 focus:bg-primary-300/20">{section.title}</NavigationMenuTrigger>
+			<NavigationMenuContent className="flex flex-col px-3 py-2">
+				<ScrollArea className="flex flex-col has-data-[slot=scroll-area-scrollbar]:pr-3 max-h-[min(28rem,70vh)]">
+					{section.tools.map(tool => {
+						const Icon = tool.icon;
+
+						return (
+							<NavigationMenuLink key={tool.url} className="in-data-[slot=navigation-menu-content]:px-3.5" render={<Link to={tool.url} />} closeOnClick>
+								<Icon aria-hidden />
+								{toolLabel(section, tool.name)}
+							</NavigationMenuLink>
+						);
+					})}
+				</ScrollArea>
+			</NavigationMenuContent>
+		</NavigationMenuItem>
+	);
+}
 
 export function Header() {
 	return (
@@ -18,22 +47,9 @@ export function Header() {
 				<div className="flex items-center gap-2">
 					<NavigationMenu align="end">
 						<NavigationMenuList>
-							<NavigationMenuItem>
-								<NavigationMenuLink className="hover:bg-primary-300/20 focus:bg-primary-300/20" render={<Link to="/" />} closeOnClick>
-									Mock 1
-								</NavigationMenuLink>
-							</NavigationMenuItem>
-							<NavigationMenuItem>
-								<NavigationMenuTrigger className="data-open:bg-primary-300/20 data-open:hover:bg-primary-300/20 data-popup-open:bg-primary-300/20 data-popup-open:hover:bg-primary-300/20 data-open:focus:bg-primary-300/20 data-popup-open:focus:bg-primary-300/20 hover:bg-primary-300/20 focus:bg-primary-300/20">TLDR</NavigationMenuTrigger>
-								<NavigationMenuContent className="flex flex-col px-3 py-2">
-									<NavigationMenuLink render={<Link to="/tldr-curl" />} closeOnClick>
-										curl
-									</NavigationMenuLink>
-									<NavigationMenuLink render={<Link to="/tldr-curl" />} closeOnClick>
-										TLDR 2
-									</NavigationMenuLink>
-								</NavigationMenuContent>
-							</NavigationMenuItem>
+							{toolSections.map(section => (
+								<SectionMenu key={section.id} section={section} />
+							))}
 						</NavigationMenuList>
 					</NavigationMenu>
 
