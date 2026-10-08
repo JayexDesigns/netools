@@ -142,3 +142,37 @@
 		@apply font-sans scroll-smooth;
 	}
 }
+
+/*
+	* Page cross-fade on navigation, driven by TanStack Router's built-in view
+	* transitions (see defaultViewTransition in router.tsx). The outgoing page
+	* is held fully opaque underneath while the incoming page fades in over it,
+	* so the composite never dips through the page background mid-transition.
+*/
+
+html:active-view-transition-type(page-fade)::view-transition-old(root) {
+	mix-blend-mode: normal;
+	animation: none;
+}
+
+html:active-view-transition-type(page-fade)::view-transition-new(root) {
+	mix-blend-mode: normal;
+	animation: page-fade-in 200ms ease-out both;
+}
+
+@keyframes page-fade-in {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html:active-view-transition-type(page-fade)::view-transition-group(root),
+	html:active-view-transition-type(page-fade)::view-transition-old(root),
+	html:active-view-transition-type(page-fade)::view-transition-new(root) {
+		animation: none;
+	}
+}

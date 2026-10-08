@@ -34,7 +34,7 @@ export default function ToolsExplorer() {
 	};
 
 	return (
-		<section id="tools" aria-label="Tools" className="mx-auto px-6 pb-28 w-full max-w-6xl scroll-mt-16">
+		<section id="tools" aria-label="Tools" className="mx-auto pb-16 w-full scroll-mt-16">
 			<div className="space-y-10">
 				<SearchBar value={query} onValueChange={setQuery} />
 

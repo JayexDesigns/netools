@@ -1,10 +1,9 @@
-import {Link} from "@tanstack/react-router";
-import {Network} from "lucide-react";
-
 import {NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger} from "@/components/ui/navigation-menu";
 import {Separator} from "@/components/ui/separator";
 import {GithubDark} from "@/components/ui/svgs/githubDark";
 import {GithubLight} from "@/components/ui/svgs/githubLight";
+import {Link} from "@tanstack/react-router";
+import {Network} from "lucide-react";
 
 const GITHUB_URL = "https://github.com/JayexDesigns";
 

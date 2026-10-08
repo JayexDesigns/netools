@@ -39,6 +39,6 @@ const EXAMPLES = [
 	}
 ];
 
-export default function tldrCurl() {
+export default function TLDRCurl() {
 	return <TLDR command="curl" characteristics={CHARACTERISTICS} manualURL={MANUAL_URL} examples={EXAMPLES} />;
 }

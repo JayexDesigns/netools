@@ -11,7 +11,7 @@ export default function ToolCard({tool}: ToolCardProps) {
 	return (
 		<Link to="/tldr-curl">
 			<article className="group flex flex-col gap-4 bg-white/4 hover:bg-white/[0.07] p-5 rounded-3xl ring-1 ring-white/10 hover:ring-primary-400/40 transition-all hover:-translate-y-0.5">
-				<div className="flex justify-center items-center bg-primary-500/15 group-hover:bg-primary-500/25 rounded-2xl ring-1 ring-primary-400/30 size-11 text-primary-300 transition-colors">
+				<div className="flex justify-center items-center bg-primary-500/15 group-hover:bg-primary-500/25 rounded-xl ring-1 ring-primary-400/30 size-11 text-primary-300 transition-colors">
 					<Icon aria-hidden className="size-5" />
 				</div>
 				<div className="space-y-1.5">
