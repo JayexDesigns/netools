@@ -1,6 +1,6 @@
 import {IconHttpGet, IconHttpPost} from "@tabler/icons-react";
 import type {LucideIcon} from "lucide-react";
-import {Network, Radar, Route, Waypoints} from "lucide-react";
+import {ArrowLeftRight, Cable, Calculator, Copy, FolderSync, Gauge, Globe, KeyRound, MapPin, Network, Package, Radar, Route, Router, Rows3, ScanSearch, Shield, Timer, Waypoints, Wifi} from "lucide-react";
 
 export type Tool = {
 	url: string;
@@ -17,6 +17,11 @@ export type ToolSection = {
 
 export const toolSections: ToolSection[] = [
 	{
+		id: "ipv4",
+		title: "IPv4",
+		tools: [{url: "/subnet-calculator", name: "Subnet Calculator", description: "Calculate the network address, broadcast address, masks, size, host range and class of an IPv4 address.", icon: Calculator}]
+	},
+	{
 		id: "tldr",
 		title: "TLDR",
 		tools: [
@@ -25,22 +30,22 @@ export const toolSections: ToolSection[] = [
 			{url: "/tldr-ip", name: "TLDR ip", description: "A simplified manual with usage examples for the ip command.", icon: Network},
 			{url: "/tldr-route", name: "TLDR route", description: "A simplified manual with usage examples for the route command.", icon: Route},
 			{url: "/tldr-ping", name: "TLDR ping", description: "A simplified manual with usage examples for the ping command.", icon: Radar},
-			{url: "/tldr-traceroute", name: "TLDR traceroute", description: "A simplified manual with usage examples for the traceroute command.", icon: Waypoints}
-			// {url: "/tldr-dig", name: "TLDR dig", description: "A simplified manual with usage examples for the dig command.", icon: Globe},
-			// {url: "/tldr-nc", name: "TLDR nc", description: "A simplified manual with usage examples for the nc command.", icon: Cable},
-			// {url: "/tldr-ssh", name: "TLDR ssh", description: "A simplified manual with usage examples for the ssh command.", icon: KeyRound},
-			// {url: "/tldr-scp", name: "TLDR scp", description: "A simplified manual with usage examples for the scp command.", icon: Copy},
-			// {url: "/tldr-ftp", name: "TLDR ftp", description: "A simplified manual with usage examples for the ftp command.", icon: ArrowLeftRight},
-			// {url: "/tldr-sftp", name: "TLDR sftp", description: "A simplified manual with usage examples for the sftp command.", icon: Shield},
-			// {url: "/tldr-rsync", name: "TLDR rsync", description: "A simplified manual with usage examples for the rsync command.", icon: FolderSync},
-			// {url: "/tldr-nmap", name: "TLDR nmap", description: "A simplified manual with usage examples for the nmap command.", icon: ScanSearch},
-			// {url: "/tldr-iperf3", name: "TLDR iperf3", description: "A simplified manual with usage examples for the iperf3 command.", icon: Gauge},
-			// {url: "/tldr-tcpdump", name: "TLDR tcpdump", description: "A simplified manual with usage examples for the tcpdump command.", icon: Package},
-			// {url: "/tldr-arp", name: "TLDR arp", description: "A simplified manual with usage examples for the arp command.", icon: MapPin},
-			// {url: "/tldr-networkctl", name: "TLDR networkctl", description: "A simplified manual with usage examples for the networkctl command.", icon: Router},
-			// {url: "/tldr-ss", name: "TLDR ss", description: "A simplified manual with usage examples for the ss command.", icon: Rows3},
-			// {url: "/tldr-iw", name: "TLDR iw", description: "A simplified manual with usage examples for the iw command.", icon: Wifi},
-			// {url: "/tldr-mtr", name: "TLDR mtr", description: "A simplified manual with usage examples for the mtr command.", icon: Timer}
+			{url: "/tldr-traceroute", name: "TLDR traceroute", description: "A simplified manual with usage examples for the traceroute command.", icon: Waypoints},
+			{url: "/tldr-dig", name: "TLDR dig", description: "A simplified manual with usage examples for the dig command.", icon: Globe},
+			{url: "/tldr-nc", name: "TLDR nc", description: "A simplified manual with usage examples for the nc command.", icon: Cable},
+			{url: "/tldr-ssh", name: "TLDR ssh", description: "A simplified manual with usage examples for the ssh command.", icon: KeyRound},
+			{url: "/tldr-scp", name: "TLDR scp", description: "A simplified manual with usage examples for the scp command.", icon: Copy},
+			{url: "/tldr-ftp", name: "TLDR ftp", description: "A simplified manual with usage examples for the ftp command.", icon: ArrowLeftRight},
+			{url: "/tldr-sftp", name: "TLDR sftp", description: "A simplified manual with usage examples for the sftp command.", icon: Shield},
+			{url: "/tldr-rsync", name: "TLDR rsync", description: "A simplified manual with usage examples for the rsync command.", icon: FolderSync},
+			{url: "/tldr-nmap", name: "TLDR nmap", description: "A simplified manual with usage examples for the nmap command.", icon: ScanSearch},
+			{url: "/tldr-iperf3", name: "TLDR iperf3", description: "A simplified manual with usage examples for the iperf3 command.", icon: Gauge},
+			{url: "/tldr-tcpdump", name: "TLDR tcpdump", description: "A simplified manual with usage examples for the tcpdump command.", icon: Package},
+			{url: "/tldr-arp", name: "TLDR arp", description: "A simplified manual with usage examples for the arp command.", icon: MapPin},
+			{url: "/tldr-networkctl", name: "TLDR networkctl", description: "A simplified manual with usage examples for the networkctl command.", icon: Router},
+			{url: "/tldr-ss", name: "TLDR ss", description: "A simplified manual with usage examples for the ss command.", icon: Rows3},
+			{url: "/tldr-iw", name: "TLDR iw", description: "A simplified manual with usage examples for the iw command.", icon: Wifi},
+			{url: "/tldr-mtr", name: "TLDR mtr", description: "A simplified manual with usage examples for the mtr command.", icon: Timer}
 		]
 	}
 ];

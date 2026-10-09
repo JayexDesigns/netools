@@ -3,6 +3,7 @@ import {ThemeProvider} from "@/components/theme-provider";
 import {Toaster} from "@/components/ui/toast";
 import LandingPage from "@/pages/landing/landing-page";
 import NotFound from "@/pages/not-found";
+import SubnetCalculator from "@/pages/tools/subnet-calculator";
 import TLDRarp from "@/pages/tools/tldr-arp";
 import TLDRcurl from "@/pages/tools/tldr-curl";
 import TLDRdig from "@/pages/tools/tldr-dig";
@@ -41,6 +42,12 @@ const indexRoute = createRoute({
 	getParentRoute: () => rootRoute,
 	path: "/",
 	component: LandingPage
+});
+
+const subnetCalculatorRoute = createRoute({
+	getParentRoute: () => rootRoute,
+	path: "/subnet-calculator",
+	component: SubnetCalculator
 });
 
 const tldrArpRoute = createRoute({
@@ -169,7 +176,7 @@ const tldrWgetRoute = createRoute({
 	component: TLDRwget
 });
 
-const routeTree = rootRoute.addChildren([indexRoute, tldrArpRoute, tldrCurlRoute, tldrDigRoute, tldrFtpRoute, tldrIpRoute, tldrIperf3Route, tldrIwRoute, tldrMtrRoute, tldrNcRoute, tldrNetworkctlRoute, tldrNmapRoute, tldrPingRoute, tldrRouteRoute, tldrRsyncRoute, tldrScpRoute, tldrSftpRoute, tldrSsRoute, tldrSshRoute, tldrTcpdumpRoute, tldrTracerouteRoute, tldrWgetRoute]);
+const routeTree = rootRoute.addChildren([indexRoute, subnetCalculatorRoute, tldrArpRoute, tldrCurlRoute, tldrDigRoute, tldrFtpRoute, tldrIpRoute, tldrIperf3Route, tldrIwRoute, tldrMtrRoute, tldrNcRoute, tldrNetworkctlRoute, tldrNmapRoute, tldrPingRoute, tldrRouteRoute, tldrRsyncRoute, tldrScpRoute, tldrSftpRoute, tldrSsRoute, tldrSshRoute, tldrTcpdumpRoute, tldrTracerouteRoute, tldrWgetRoute]);
 
 const router = createRouter({
 	routeTree,

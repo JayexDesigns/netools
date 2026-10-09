@@ -26,7 +26,7 @@ type tldrProps = {
 
 export default function TLDR({command, characteristics, manualURL, examples}: tldrProps) {
 	return (
-		<div className="isolate relative min-h-screen overflow-x-clip text-foreground">
+		<div className="isolate relative min-h-dvh overflow-x-clip text-foreground">
 			<BackgroundGlow />
 
 			<main className="relative mx-auto px-4 sm:px-6 pt-24 sm:pt-28 pb-24 max-w-6xl">

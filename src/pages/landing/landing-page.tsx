@@ -4,9 +4,9 @@ import ToolsExplorer from "@/pages/landing/tools-explorer";
 
 export default function LandingPage() {
 	return (
-		<div className="isolate relative min-h-screen overflow-x-clip text-white">
+		<div className="isolate relative overflow-x-clip text-white">
 			<BackgroundGlow />
-			<div className="relative flex flex-col mx-auto px-4 sm:px-6 max-w-6xl min-h-screen">
+			<div className="relative flex flex-col mx-auto px-4 sm:px-6 max-w-6xl min-h-dvh">
 				<Hero />
 				<ToolsExplorer />
 			</div>
