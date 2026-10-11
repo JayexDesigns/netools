@@ -3,7 +3,8 @@ import {ThemeProvider} from "@/components/theme-provider";
 import {Toaster} from "@/components/ui/toast";
 import LandingPage from "@/pages/landing/landing-page";
 import NotFound from "@/pages/not-found";
-import SubnetCalculator from "@/pages/tools/subnet-calculator";
+import IPv4AddressConverter from "@/pages/tools/ipv4-address-converter";
+import IPv4SubnetCalculator from "@/pages/tools/ipv4-subnet-calculator";
 import TLDRarp from "@/pages/tools/tldr-arp";
 import TLDRcurl from "@/pages/tools/tldr-curl";
 import TLDRdig from "@/pages/tools/tldr-dig";
@@ -38,145 +39,128 @@ const rootRoute = createRootRoute({
 	notFoundComponent: NotFound
 });
 
-const indexRoute = createRoute({
-	getParentRoute: () => rootRoute,
-	path: "/",
-	component: LandingPage
-});
-
-const subnetCalculatorRoute = createRoute({
-	getParentRoute: () => rootRoute,
-	path: "/subnet-calculator",
-	component: SubnetCalculator
-});
-
-const tldrArpRoute = createRoute({
-	getParentRoute: () => rootRoute,
-	path: "/tldr-arp",
-	component: TLDRarp
-});
-
-const tldrCurlRoute = createRoute({
-	getParentRoute: () => rootRoute,
-	path: "/tldr-curl",
-	component: TLDRcurl
-});
-
-const tldrDigRoute = createRoute({
-	getParentRoute: () => rootRoute,
-	path: "/tldr-dig",
-	component: TLDRdig
-});
-
-const tldrFtpRoute = createRoute({
-	getParentRoute: () => rootRoute,
-	path: "/tldr-ftp",
-	component: TLDRftp
-});
-
-const tldrIpRoute = createRoute({
-	getParentRoute: () => rootRoute,
-	path: "/tldr-ip",
-	component: TLDRip
-});
-
-const tldrIperf3Route = createRoute({
-	getParentRoute: () => rootRoute,
-	path: "/tldr-iperf3",
-	component: TLDRiperf3
-});
-
-const tldrIwRoute = createRoute({
-	getParentRoute: () => rootRoute,
-	path: "/tldr-iw",
-	component: TLDRiw
-});
-
-const tldrMtrRoute = createRoute({
-	getParentRoute: () => rootRoute,
-	path: "/tldr-mtr",
-	component: TLDRmtr
-});
-
-const tldrNcRoute = createRoute({
-	getParentRoute: () => rootRoute,
-	path: "/tldr-nc",
-	component: TLDRnc
-});
-
-const tldrNetworkctlRoute = createRoute({
-	getParentRoute: () => rootRoute,
-	path: "/tldr-networkctl",
-	component: TLDRnetworkctl
-});
-
-const tldrNmapRoute = createRoute({
-	getParentRoute: () => rootRoute,
-	path: "/tldr-nmap",
-	component: TLDRnmap
-});
-
-const tldrPingRoute = createRoute({
-	getParentRoute: () => rootRoute,
-	path: "/tldr-ping",
-	component: TLDRping
-});
-
-const tldrRouteRoute = createRoute({
-	getParentRoute: () => rootRoute,
-	path: "/tldr-route",
-	component: TLDRroute
-});
-
-const tldrRsyncRoute = createRoute({
-	getParentRoute: () => rootRoute,
-	path: "/tldr-rsync",
-	component: TLDRrsync
-});
-
-const tldrScpRoute = createRoute({
-	getParentRoute: () => rootRoute,
-	path: "/tldr-scp",
-	component: TLDRscp
-});
-
-const tldrSftpRoute = createRoute({
-	getParentRoute: () => rootRoute,
-	path: "/tldr-sftp",
-	component: TLDRsftp
-});
-
-const tldrSsRoute = createRoute({
-	getParentRoute: () => rootRoute,
-	path: "/tldr-ss",
-	component: TLDRss
-});
-
-const tldrSshRoute = createRoute({
-	getParentRoute: () => rootRoute,
-	path: "/tldr-ssh",
-	component: TLDRssh
-});
-
-const tldrTcpdumpRoute = createRoute({
-	getParentRoute: () => rootRoute,
-	path: "/tldr-tcpdump",
-	component: TLDRtcpdump
-});
-
-const tldrTracerouteRoute = createRoute({
-	getParentRoute: () => rootRoute,
-	path: "/tldr-traceroute",
-	component: TLDRtraceroute
-});
-
-const tldrWgetRoute = createRoute({
-	getParentRoute: () => rootRoute,
-	path: "/tldr-wget",
-	component: TLDRwget
-});
-
-const routeTree = rootRoute.addChildren([indexRoute, subnetCalculatorRoute, tldrArpRoute, tldrCurlRoute, tldrDigRoute, tldrFtpRoute, tldrIpRoute, tldrIperf3Route, tldrIwRoute, tldrMtrRoute, tldrNcRoute, tldrNetworkctlRoute, tldrNmapRoute, tldrPingRoute, tldrRouteRoute, tldrRsyncRoute, tldrScpRoute, tldrSftpRoute, tldrSsRoute, tldrSshRoute, tldrTcpdumpRoute, tldrTracerouteRoute, tldrWgetRoute]);
+const routeTree = rootRoute.addChildren([
+	createRoute({
+		getParentRoute: () => rootRoute,
+		path: "/",
+		component: LandingPage
+	}),
+	createRoute({
+		getParentRoute: () => rootRoute,
+		path: "/ipv4-subnet-calculator",
+		component: IPv4SubnetCalculator
+	}),
+	createRoute({
+		getParentRoute: () => rootRoute,
+		path: "/ipv4-address-converter",
+		component: IPv4AddressConverter
+	}),
+	createRoute({
+		getParentRoute: () => rootRoute,
+		path: "/tldr-arp",
+		component: TLDRarp
+	}),
+	createRoute({
+		getParentRoute: () => rootRoute,
+		path: "/tldr-curl",
+		component: TLDRcurl
+	}),
+	createRoute({
+		getParentRoute: () => rootRoute,
+		path: "/tldr-dig",
+		component: TLDRdig
+	}),
+	createRoute({
+		getParentRoute: () => rootRoute,
+		path: "/tldr-ftp",
+		component: TLDRftp
+	}),
+	createRoute({
+		getParentRoute: () => rootRoute,
+		path: "/tldr-ip",
+		component: TLDRip
+	}),
+	createRoute({
+		getParentRoute: () => rootRoute,
+		path: "/tldr-iperf3",
+		component: TLDRiperf3
+	}),
+	createRoute({
+		getParentRoute: () => rootRoute,
+		path: "/tldr-iw",
+		component: TLDRiw
+	}),
+	createRoute({
+		getParentRoute: () => rootRoute,
+		path: "/tldr-mtr",
+		component: TLDRmtr
+	}),
+	createRoute({
+		getParentRoute: () => rootRoute,
+		path: "/tldr-nc",
+		component: TLDRnc
+	}),
+	createRoute({
+		getParentRoute: () => rootRoute,
+		path: "/tldr-networkctl",
+		component: TLDRnetworkctl
+	}),
+	createRoute({
+		getParentRoute: () => rootRoute,
+		path: "/tldr-nmap",
+		component: TLDRnmap
+	}),
+	createRoute({
+		getParentRoute: () => rootRoute,
+		path: "/tldr-ping",
+		component: TLDRping
+	}),
+	createRoute({
+		getParentRoute: () => rootRoute,
+		path: "/tldr-route",
+		component: TLDRroute
+	}),
+	createRoute({
+		getParentRoute: () => rootRoute,
+		path: "/tldr-rsync",
+		component: TLDRrsync
+	}),
+	createRoute({
+		getParentRoute: () => rootRoute,
+		path: "/tldr-scp",
+		component: TLDRscp
+	}),
+	createRoute({
+		getParentRoute: () => rootRoute,
+		path: "/tldr-sftp",
+		component: TLDRsftp
+	}),
+	createRoute({
+		getParentRoute: () => rootRoute,
+		path: "/tldr-ss",
+		component: TLDRss
+	}),
+	createRoute({
+		getParentRoute: () => rootRoute,
+		path: "/tldr-ssh",
+		component: TLDRssh
+	}),
+	createRoute({
+		getParentRoute: () => rootRoute,
+		path: "/tldr-tcpdump",
+		component: TLDRtcpdump
+	}),
+	createRoute({
+		getParentRoute: () => rootRoute,
+		path: "/tldr-traceroute",
+		component: TLDRtraceroute
+	}),
+	createRoute({
+		getParentRoute: () => rootRoute,
+		path: "/tldr-wget",
+		component: TLDRwget
+	})
+]);
 
 const router = createRouter({
 	routeTree,

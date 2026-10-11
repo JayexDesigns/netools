@@ -3,9 +3,9 @@ export const IPV4_REGEX = /^(?:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)\.){3}(?:25[0-
 
 export type SubnetRow = {
 	label: string;
-	/** Formatted value, `null` when the field does not exist for this prefix length. */
+	// Formatted value, `null` when the field does not exist for this prefix length.
 	value: string | null;
-	/** Binary representation of the value, `null` when the field has no binary toggle. */
+	// Binary representation of the value, `null` when the field has no binary toggle.
 	binary: string | null;
 };
 

@@ -4,7 +4,7 @@ import {Input} from "@/components/ui/input";
 import {calculateSubnet} from "@/lib/subnet";
 import {useState} from "react";
 
-export default function SubnetCalculator() {
+export default function IPv4SubnetCalculator() {
 	const [address, setAddress] = useState("");
 
 	const rows = calculateSubnet(address);
@@ -16,7 +16,7 @@ export default function SubnetCalculator() {
 
 			<main className="relative mx-auto px-4 sm:px-6 pt-24 sm:pt-28 pb-24 max-w-5xl">
 				<header className="flex flex-col gap-5">
-					<h1 className="font-heading font-bold text-3xl sm:text-4xl tracking-tight">Subnet Calculator</h1>
+					<h1 className="font-heading font-bold text-3xl sm:text-4xl tracking-tight">IPv4 Subnet Calculator</h1>
 
 					<p className="text-muted-foreground leading-relaxed">
 						Enter an IPv4 address with an optional CIDR mask to calculate its network details, for example <code className="bg-muted px-1.5 py-0.5 border border-border rounded-md font-mono text-[0.85em] text-foreground">192.168.1.10/24</code>.
