@@ -15,6 +15,11 @@ export type ToolSection = {
 	tools: Tool[];
 };
 
+// Strip the section title prefix on tools when it matches
+export function toolLabel(section: ToolSection, name: string) {
+	return name.startsWith(`${section.title} `) ? name.slice(section.title.length + 1) : name;
+}
+
 export const toolSections: ToolSection[] = [
 	{
 		id: "development",
