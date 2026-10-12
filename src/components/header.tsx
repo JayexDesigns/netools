@@ -19,7 +19,7 @@ function SectionMenu({section}: {section: ToolSection}) {
 
 						return (
 							<NavigationMenuLink key={tool.url} className="in-data-[slot=navigation-menu-content]:px-3.5 whitespace-nowrap" render={<Link to={tool.url} />} closeOnClick>
-								<Icon aria-hidden />
+								<Icon className="shrink-0" aria-hidden />
 								{toolLabel(section, tool.name)}
 							</NavigationMenuLink>
 						);

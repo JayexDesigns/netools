@@ -28,7 +28,7 @@ export default function ConverterField({id, label, placeholder, value, invalid, 
 				<InputGroupInput id={id} type={type} autoComplete="off" spellCheck={false} placeholder={placeholder} value={value} aria-invalid={invalid} aria-describedby={hintId} onChange={event => onValueChange(event.target.value)} onBlur={onBlur} className="font-mono" />
 				{copy && (
 					<InputGroupAddon align="inline-end">
-						<CopyButton value={value} label={label} disabled={value.trim() === ""} className="bg-transparent hover:bg-muted text-foreground" />
+						<CopyButton value={value} label={label} disabled={value.trim() === ""} className="bg-transparent dark:hover:bg-muted text-foreground" />
 					</InputGroupAddon>
 				)}
 			</InputGroup>

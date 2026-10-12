@@ -28,7 +28,7 @@ export default function CodeBlock({code, lang = "bash"}: CodeBlockProps) {
 	}, [code, lang]);
 
 	return (
-		<div className="bg-muted/40 dark:bg-black/30 border border-border rounded-xl overflow-hidden">
+		<div className="bg-black/30 border border-border rounded-xl overflow-hidden">
 			<div className="flex justify-between items-center px-3 py-1.5 border-border border-b">
 				<span className="font-medium text-muted-foreground text-xs uppercase tracking-wider">{lang}</span>
 				<CopyButton value={code} label="code block's content" />

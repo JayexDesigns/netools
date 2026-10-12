@@ -7,6 +7,7 @@ import NotFound from "@/pages/not-found";
 import CurlBuilder from "@/pages/tools/curl-builder";
 import IPv4AddressConverter from "@/pages/tools/ipv4-address-converter";
 import IPv4SubnetCalculator from "@/pages/tools/ipv4-subnet-calculator";
+import JwtEncoderDecoder from "@/pages/tools/jwt-encoder-decoder";
 import TLDRarp from "@/pages/tools/tldr-arp";
 import TLDRcurl from "@/pages/tools/tldr-curl";
 import TLDRdig from "@/pages/tools/tldr-dig";
@@ -53,6 +54,11 @@ const routeTree = rootRoute.addChildren([
 		getParentRoute: () => rootRoute,
 		path: "/curl-builder",
 		component: CurlBuilder
+	}),
+	createRoute({
+		getParentRoute: () => rootRoute,
+		path: "/jwt-encoder-decoder",
+		component: JwtEncoderDecoder
 	}),
 	createRoute({
 		getParentRoute: () => rootRoute,

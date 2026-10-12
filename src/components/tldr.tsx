@@ -55,7 +55,7 @@ export default function TLDR({command, characteristics, manualURL, examples}: tl
 						{examples.map((example, index) => (
 							<li key={example.command} className="flex flex-col gap-3">
 								<div className="flex items-start gap-3">
-									<span aria-hidden="true" className="flex justify-center items-center bg-primary-500/15 rounded-full ring-1 ring-primary-400/30 size-6 font-semibold text-primary-700 dark:text-primary-300 text-xs shrink-0">
+									<span aria-hidden="true" className="flex justify-center items-center bg-primary-500/15 rounded-full ring-1 ring-primary-400/30 size-6 font-semibold text-primary-300 text-xs shrink-0">
 										{index + 1}
 									</span>
 									<p className="text-foreground/80 text-sm leading-relaxed">{formatDescription(example.description)}</p>

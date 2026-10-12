@@ -1,5 +1,5 @@
+import CardSection from "@/components/card-section";
 import ConverterField from "@/components/converter-field";
-import CurlSection from "@/components/curl/curl-section";
 import {Label} from "@/components/ui/label";
 import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/components/ui/select";
 import {API_KEY_LOCATIONS, AUTH_TYPES, type ApiKeyLocation, type AuthType} from "@/lib/curl";
@@ -23,7 +23,7 @@ type AuthSectionProps = {
 
 export default function AuthSection({authType, basicUsername, basicPassword, bearerToken, apiKeyName, apiKeyValue, apiKeyLocation, onAuthTypeChange, onBasicUsernameChange, onBasicPasswordChange, onBearerTokenChange, onApiKeyNameChange, onApiKeyValueChange, onApiKeyLocationChange}: AuthSectionProps) {
 	return (
-		<CurlSection id="auth" title="Authorization" description="Add credentials to the command, either with -u for basic auth or with an Authorization or API key header.">
+		<CardSection id="auth" title="Authorization" description="Add credentials to the command, either with -u for basic auth or with an Authorization or API key header.">
 			<div className="flex flex-col gap-3">
 				<Select value={authType} onValueChange={value => onAuthTypeChange(value as AuthType)}>
 					<SelectTrigger className="w-full sm:w-44" aria-label="Authorization type">
@@ -77,6 +77,6 @@ export default function AuthSection({authType, basicUsername, basicPassword, bea
 
 				{authType === "none" && <p className="text-muted-foreground text-sm">The command is generated without credentials.</p>}
 			</div>
-		</CurlSection>
+		</CardSection>
 	);
 }

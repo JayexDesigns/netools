@@ -1,3 +1,4 @@
+import CardSection from "@/components/card-section";
 import ConverterField from "@/components/converter-field";
 import {useState} from "react";
 
@@ -38,14 +39,7 @@ export default function UriSection({id, title, description, invalidHint, decoded
 	}
 
 	return (
-		<section aria-labelledby={`${id}-heading`} className="flex flex-col gap-4 bg-muted/40 dark:bg-black/30 p-4 sm:p-5 border border-border rounded-xl">
-			<div className="flex flex-col gap-1">
-				<h2 id={`${id}-heading`} className="font-medium text-lg">
-					{title}
-				</h2>
-				<p className="text-muted-foreground text-sm leading-relaxed">{description}</p>
-			</div>
-
+		<CardSection id={id} title={title} description={description}>
 			<div className="gap-4 grid sm:grid-cols-2">
 				<ConverterField id={`${id}-decoded`} label="Decoded" placeholder={decodedPlaceholder} value={decoded} invalid={false} hintId={`${id}-hint`} onValueChange={handleDecodedChange} copy />
 				<ConverterField id={`${id}-encoded`} label="Encoded" placeholder={encodedPlaceholder} value={encoded} invalid={encodedInvalid} hintId={`${id}-hint`} onValueChange={handleEncodedChange} copy />
@@ -54,6 +48,6 @@ export default function UriSection({id, title, description, invalidHint, decoded
 			<p id={`${id}-hint`} className={encodedInvalid ? "text-destructive text-sm" : "text-muted-foreground text-sm"}>
 				{encodedInvalid ? invalidHint : "Type in either field to convert the value to the other representation."}
 			</p>
-		</section>
+		</CardSection>
 	);
 }

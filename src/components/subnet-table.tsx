@@ -23,7 +23,7 @@ function ResultRow({row}: {row: SubnetRow}) {
 				<div className="flex justify-end items-center gap-1.5">
 					<span className={cn("font-mono", binaryShown ? "text-foreground text-xs" : "text-sm", isNull && "text-muted-foreground")}>{displayed ?? "—"}</span>
 					{canToggle && (
-						<Toggle variant="outline" size="sm" pressed={showBinary} onPressedChange={setShowBinary} aria-label={`Show ${row.label} in ${showBinary ? "dotted decimal" : "binary"}`} className="h-6 min-w-6 px-0 [&_svg:not([class*='size-'])]:size-3 aria-pressed:bg-primary-500/15 aria-pressed:text-primary-600 dark:aria-pressed:text-primary-300">
+						<Toggle variant="outline" size="sm" pressed={showBinary} onPressedChange={setShowBinary} aria-label={`Show ${row.label} in ${showBinary ? "dotted decimal" : "binary"}`} className="h-6 min-w-6 px-0 [&_svg:not([class*='size-'])]:size-3 aria-pressed:bg-primary-500/15 aria-pressed:text-primary-300">
 							<BinaryIcon />
 						</Toggle>
 					)}
@@ -40,7 +40,7 @@ type SubnetTableProps = {
 
 export default function SubnetTable({rows}: SubnetTableProps) {
 	return (
-		<div className="bg-muted/40 dark:bg-black/30 border border-border rounded-xl overflow-hidden">
+		<div className="bg-black/30 border border-border rounded-xl overflow-hidden">
 			<Table>
 				<TableBody>
 					{rows.map(row => (

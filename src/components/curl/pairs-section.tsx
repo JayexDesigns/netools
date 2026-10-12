@@ -1,4 +1,4 @@
-import CurlSection from "@/components/curl/curl-section";
+import CardSection from "@/components/card-section";
 import PairsTable from "@/components/curl/pairs-table";
 import type {Pair} from "@/lib/curl";
 
@@ -15,8 +15,8 @@ type PairsSectionProps = {
 
 export default function PairsSection({id, title, description, label, placeholderKey, placeholderValue, pairs, onChange}: PairsSectionProps) {
 	return (
-		<CurlSection id={id} title={title} description={description}>
+		<CardSection id={id} title={title} description={description}>
 			<PairsTable label={label} placeholderKey={placeholderKey} placeholderValue={placeholderValue} pairs={pairs} onChange={onChange} />
-		</CurlSection>
+		</CardSection>
 	);
 }

@@ -67,7 +67,7 @@ export default function MaskSection() {
 	}
 
 	return (
-		<section aria-labelledby="mask-heading" className="flex flex-col gap-4 bg-muted/40 dark:bg-black/30 p-4 sm:p-5 border border-border rounded-xl">
+		<section aria-labelledby="mask-heading" className="flex flex-col gap-4 bg-black/30 p-4 sm:p-5 border border-border rounded-xl">
 			<div className="flex flex-col gap-1">
 				<h2 id="mask-heading" className="font-medium text-lg">
 					Subnet Mask

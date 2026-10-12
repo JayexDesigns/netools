@@ -1,4 +1,4 @@
-import CurlSection from "@/components/curl/curl-section";
+import CardSection from "@/components/card-section";
 import PairsTable from "@/components/curl/pairs-table";
 import {Label} from "@/components/ui/label";
 import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/components/ui/select";
@@ -20,7 +20,7 @@ export default function BodySection({bodyType, jsonBody, rawBody, formBody, onBo
 	const jsonInvalid = bodyType === "json" && !isValidJson(jsonBody);
 
 	return (
-		<CurlSection id="body" title="Body" description="Choose how the request body is encoded and fill it in. JSON and raw bodies use --data-raw, while form fields use one --data-urlencode flag per field.">
+		<CardSection id="body" title="Body" description="Choose how the request body is encoded and fill it in. JSON and raw bodies use --data-raw, while form fields use one --data-urlencode flag per field.">
 			<div className="flex flex-col gap-3">
 				<Select value={bodyType} onValueChange={value => onBodyTypeChange(value as BodyType)}>
 					<SelectTrigger className="w-full sm:w-40" aria-label="Body type">
@@ -70,6 +70,6 @@ export default function BodySection({bodyType, jsonBody, rawBody, formBody, onBo
 					</p>
 				)}
 			</div>
-		</CurlSection>
+		</CardSection>
 	);
 }
