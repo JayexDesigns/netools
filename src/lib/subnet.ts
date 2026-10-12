@@ -1,3 +1,5 @@
+import {cidrToMask, formatAddress, parseAddress} from "@/lib/converter";
+
 // Matches a plain IPv4 address with an optional CIDR mask (0-32)
 export const IPV4_REGEX = /^(?:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)\.){3}(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(?:\/(?:3[0-2]|[12]?\d))?$/;
 
@@ -46,18 +48,6 @@ const SPECIAL_PURPOSE_TABLE: [cidr: string, name: string][] = [
 	["255.255.255.255/32", "Limited Broadcast"]
 ];
 
-function toIPv4(value: number) {
-	return [24, 16, 8, 0].map(shift => ((value >>> shift) & 255).toString()).join(".");
-}
-
-function toBinary(value: number) {
-	return [24, 16, 8, 0].map(shift => ((value >>> shift) & 255).toString(2).padStart(8, "0")).join(".");
-}
-
-function toInt(address: string) {
-	return address.split(".").reduce((acc, octet) => ((acc << 8) | Number(octet)) >>> 0, 0);
-}
-
 function ipClass(firstOctet: number) {
 	if (firstOctet <= 127) return "A";
 	if (firstOctet <= 191) return "B";
@@ -69,8 +59,9 @@ function ipClass(firstOctet: number) {
 const SPECIAL_PURPOSE_BLOCKS: SpecialPurposeBlock[] = SPECIAL_PURPOSE_TABLE.map(([cidr, name]) => {
 	const [address, prefix] = cidr.split("/");
 	const prefixLength = Number(prefix);
-	const start = toInt(address);
-	const subnetMask = prefixLength === 0 ? 0 : (0xffffffff << (32 - prefixLength)) >>> 0;
+	const start = parseAddress(address, "decimal");
+	if (start === null) throw new Error(`Invalid special-purpose address: ${address}`);
+	const subnetMask = cidrToMask(prefixLength);
 
 	return {start, end: (start | (~subnetMask >>> 0)) >>> 0, prefix: prefixLength, name};
 });
@@ -107,10 +98,11 @@ export function calculateSubnet(input: string): SubnetRow[] | null {
 
 	const [address, mask = "32"] = trimmed.split("/");
 	const prefixLength = Number(mask);
-	const octets = address.split(".").map(Number);
+	// The regex above already guarantees a valid dotted decimal address
+	const ip = parseAddress(address, "decimal");
+	if (ip === null) return null;
 
-	const ip = octets.reduce((acc, octet) => ((acc << 8) | octet) >>> 0, 0);
-	const subnetMask = prefixLength === 0 ? 0 : (0xffffffff << (32 - prefixLength)) >>> 0;
+	const subnetMask = cidrToMask(prefixLength);
 	const wildcardMask = ~subnetMask >>> 0;
 	const network = (ip & subnetMask) >>> 0;
 	// Networks longer than /30 (point-to-point /31 and host /32) have no broadcast address
@@ -124,15 +116,15 @@ export function calculateSubnet(input: string): SubnetRow[] | null {
 	const lastHost = hasBroadcast ? broadcast - 1 : lastAddress;
 
 	return [
-		{label: "Network Address", value: toIPv4(network), binary: toBinary(network)},
-		{label: "Broadcast Address", value: hasBroadcast ? toIPv4(broadcast) : null, binary: hasBroadcast ? toBinary(broadcast) : null},
-		{label: "Network Mask", value: toIPv4(subnetMask), binary: toBinary(subnetMask)},
+		{label: "Network Address", value: formatAddress(network, "decimal"), binary: formatAddress(network, "binary")},
+		{label: "Broadcast Address", value: hasBroadcast ? formatAddress(broadcast, "decimal") : null, binary: hasBroadcast ? formatAddress(broadcast, "binary") : null},
+		{label: "Network Mask", value: formatAddress(subnetMask, "decimal"), binary: formatAddress(subnetMask, "binary")},
 		{label: "Network Mask (CIDR)", value: `/${prefixLength}`, binary: null},
-		{label: "Wildcard Mask", value: toIPv4(wildcardMask), binary: toBinary(wildcardMask)},
+		{label: "Wildcard Mask", value: formatAddress(wildcardMask, "decimal"), binary: formatAddress(wildcardMask, "binary")},
 		{label: "Network Size", value: size.toLocaleString("en-US"), binary: null},
 		{label: "Available Hosts", value: hosts.toLocaleString("en-US"), binary: null},
-		{label: "Host Address Range", value: `${toIPv4(firstHost)} - ${toIPv4(lastHost)}`, binary: `${toBinary(firstHost)} - ${toBinary(lastHost)}`},
-		{label: "IP Class", value: ipClass(octets[0]), binary: null},
+		{label: "Host Address Range", value: `${formatAddress(firstHost, "decimal")} - ${formatAddress(lastHost, "decimal")}`, binary: `${formatAddress(firstHost, "binary")} - ${formatAddress(lastHost, "binary")}`},
+		{label: "IP Class", value: ipClass((ip >>> 24) & 255), binary: null},
 		{label: "IANA Special Purpose", value: specialPurpose(network, lastAddress), binary: null}
 	];
 }

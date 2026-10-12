@@ -8,9 +8,10 @@ type CopyButtonProps = {
 	value: string;
 	label?: string;
 	className?: string;
+	disabled?: boolean;
 };
 
-export default function CopyButton({value, label = "value", className}: CopyButtonProps) {
+export default function CopyButton({value, label = "value", className, disabled}: CopyButtonProps) {
 	const [copied, setCopied] = useState(false);
 
 	useEffect(() => {
@@ -34,7 +35,7 @@ export default function CopyButton({value, label = "value", className}: CopyButt
 	};
 
 	return (
-		<Button variant="ghost" size="icon-xs" onClick={handleCopy} aria-label={copied ? "Copied to clipboard" : `Copy ${label} to clipboard`} className={cn("dark:hover:bg-muted/40 text-muted-foreground hover:text-foreground", className)}>
+		<Button variant="ghost" size="icon-xs" disabled={disabled} onClick={handleCopy} aria-label={copied ? "Copied to clipboard" : `Copy ${label} to clipboard`} className={cn("dark:hover:bg-muted/40 text-muted-foreground hover:text-foreground", className)}>
 			{copied ? <CheckIcon className="text-primary" /> : <CopyIcon />}
 		</Button>
 	);

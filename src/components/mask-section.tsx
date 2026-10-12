@@ -56,6 +56,16 @@ export default function MaskSection() {
 		setMask(formatMask(prefix));
 	}
 
+	function handleMaskBlur() {
+		if (mask.trim() === "") return;
+
+		const prefix = parseMask(mask);
+		if (prefix === null) return;
+
+		// Canonicalize the mask on blur, so padded octets like 255.000128.0.0000 become 255.128.0.0
+		setMask(formatMask(prefix));
+	}
+
 	return (
 		<section aria-labelledby="mask-heading" className="flex flex-col gap-4 bg-muted/40 dark:bg-black/30 p-4 sm:p-5 border border-border rounded-xl">
 			<div className="flex flex-col gap-1">
@@ -66,8 +76,8 @@ export default function MaskSection() {
 			</div>
 
 			<div className="gap-4 grid sm:grid-cols-2">
-				<ConverterField id="mask-decimal" label="Mask (decimal)" placeholder="255.255.255.0" value={mask} invalid={maskInvalid} hintId="mask-hint" onValueChange={handleMaskChange} />
-				<ConverterField id="mask-cidr" label="Mask (CIDR)" placeholder="/24" value={cidr} invalid={cidrInvalid} hintId="mask-hint" onValueChange={handleCidrChange} />
+				<ConverterField id="mask-decimal" label="Mask (decimal)" placeholder="255.255.255.0" value={mask} invalid={maskInvalid} hintId="mask-hint" onValueChange={handleMaskChange} onBlur={handleMaskBlur} copy />
+				<ConverterField id="mask-cidr" label="Mask (CIDR)" placeholder="/24" value={cidr} invalid={cidrInvalid} hintId="mask-hint" onValueChange={handleCidrChange} copy />
 			</div>
 
 			<p id="mask-hint" className={hasInvalid ? "text-destructive text-sm" : "text-muted-foreground text-sm"}>

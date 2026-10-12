@@ -69,11 +69,10 @@ export function parseMask(input: string): number | null {
 }
 
 // Parses a CIDR prefix length (for example `/24`; the slash is optional)
-// Into a number from 0 to 32, or `null` when it is not a valid prefix length
+// Into a number from 0 to 32, or `null` when it is not a valid prefix length (leading zeros like `/01` are rejected)
 export function parseCidr(input: string): number | null {
 	const digits = input.trim().replace(/^\//, "");
-	if (!/^\d{1,2}$/.test(digits)) return null;
+	if (!/^(?:\d|[12]\d|3[0-2])$/.test(digits)) return null;
 
-	const prefix = Number(digits);
-	return prefix <= 32 ? prefix : null;
+	return Number(digits);
 }

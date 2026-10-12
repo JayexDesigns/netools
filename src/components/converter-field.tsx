@@ -1,5 +1,7 @@
+import CopyButton from "@/components/copy-button";
 import {Input} from "@/components/ui/input";
 import {Label} from "@/components/ui/label";
+import type {FocusEvent} from "react";
 
 type ConverterFieldProps = {
 	id: string;
@@ -10,15 +12,22 @@ type ConverterFieldProps = {
 	onValueChange: (value: string) => void;
 	hintId?: string;
 	type?: "text" | "password" | "url";
+	// Shows a copy button beside the input, empty fields have nothing to copy so their button is disabled
+	copy?: boolean;
+	// Called when the field loses focus, used to rewrite the value in its canonical form once the user is done typing
+	onBlur?: (event: FocusEvent<HTMLInputElement>) => void;
 };
 
-export default function ConverterField({id, label, placeholder, value, invalid, onValueChange, hintId, type = "text"}: ConverterFieldProps) {
+export default function ConverterField({id, label, placeholder, value, invalid, onValueChange, hintId, type = "text", copy = false, onBlur}: ConverterFieldProps) {
 	return (
 		<div className="flex flex-col gap-2">
 			<Label htmlFor={id} className="text-muted-foreground">
 				{label}
 			</Label>
-			<Input id={id} type={type} autoComplete="off" spellCheck={false} placeholder={placeholder} value={value} aria-invalid={invalid} aria-describedby={hintId} onChange={event => onValueChange(event.target.value)} className="focus-visible:border-transparent ring-1 ring-white/10 focus-visible:ring-primary-400/50 font-mono" />
+			<div className="flex items-center gap-1.5">
+				<Input id={id} type={type} autoComplete="off" spellCheck={false} placeholder={placeholder} value={value} aria-invalid={invalid} aria-describedby={hintId} onChange={event => onValueChange(event.target.value)} onBlur={onBlur} className="focus-visible:border-transparent ring-1 ring-white/10 focus-visible:ring-primary-400/50 font-mono" />
+				{copy && <CopyButton value={value} label={label} disabled={value.trim() === ""} className="bg-transparent hover:bg-muted border border-input text-foreground" />}
+			</div>
 		</div>
 	);
 }

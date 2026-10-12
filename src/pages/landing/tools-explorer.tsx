@@ -3,18 +3,17 @@ import {toolSections} from "@/data/tools";
 import SearchBar from "@/pages/landing/search-bar";
 import ToolSection from "@/pages/landing/tool-section";
 import {SearchIcon} from "lucide-react";
-import {useEffect, useMemo, useState} from "react";
+import {useMemo, useState} from "react";
 
 export default function ToolsExplorer() {
 	const [query, setQuery] = useState("");
 	const [collapsedSections, setCollapsedSections] = useState<Record<string, boolean>>({});
 
 	// Re-open every section while searching so matches are never hidden
-	useEffect(() => {
-		if (query.trim().length > 0) {
-			setCollapsedSections({});
-		}
-	}, [query]);
+	const handleQueryChange = (value: string) => {
+		setQuery(value);
+		if (value.trim().length > 0) setCollapsedSections({});
+	};
 
 	const sections = useMemo(() => {
 		const term = query.trim().toLowerCase();
@@ -36,7 +35,7 @@ export default function ToolsExplorer() {
 	return (
 		<section id="tools" aria-label="Tools" className="mx-auto pb-16 w-full scroll-mt-16">
 			<div className="space-y-10">
-				<SearchBar value={query} onValueChange={setQuery} />
+				<SearchBar value={query} onValueChange={handleQueryChange} />
 
 				{sections.length === 0 ? (
 					<div className="flex flex-col items-center bg-white/4 px-6 py-14 rounded-4xl ring-1 ring-white/10 text-center">

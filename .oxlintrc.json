@@ -10,7 +10,20 @@
 		"react/only-export-components": [
 			"warn",
 			{
-				"allowConstantExport": true
+				"allowConstantExport": true,
+				// Fast-refresh only complains about non-component exports living next to components
+				// These names come from the shadcn catalogue (variant factories, hooks, the toast manager) and are HMR-safe
+				"allowExportNames": [
+					"badgeVariants",
+					"buttonVariants",
+					"toggleVariants",
+					"navigationMenuTriggerStyle",
+					"useComboboxAnchor",
+					"createToastManager",
+					"toast",
+					"useToastManager",
+					"useTheme"
+				]
 			}
 		]
 	}

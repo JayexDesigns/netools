@@ -34,12 +34,24 @@ export default function AddressSection() {
 			return;
 		}
 
-		// A valid address rewrites every field, keeping the edited one as typed
+		// A valid address rewrites every field, keeping the edited one as typed until it loses focus
 		const next = {...EMPTY_VALUES};
 		for (const field of FIELDS) next[field.base] = field.base === base ? raw : formatAddress(parsed, field.base);
 
 		setValues(next);
 		setInvalid(NO_INVALID);
+	}
+
+	function handleBlur(base: AddressBase) {
+		const raw = values[base];
+		if (raw.trim() === "") return;
+
+		const parsed = parseAddress(raw, base);
+		if (parsed === null) return;
+
+		// Canonicalize the edited field, the other three already hold canonical values
+		const canonical = formatAddress(parsed, base);
+		if (canonical !== raw) setValues(previous => ({...previous, [base]: canonical}));
 	}
 
 	return (
@@ -53,7 +65,7 @@ export default function AddressSection() {
 
 			<div className="flex flex-col gap-4">
 				{FIELDS.map(field => (
-					<ConverterField key={field.base} id={field.id} label={field.label} placeholder={field.placeholder} value={values[field.base]} invalid={invalid[field.base]} hintId="address-hint" onValueChange={value => handleChange(field.base, value)} />
+					<ConverterField key={field.base} id={field.id} label={field.label} placeholder={field.placeholder} value={values[field.base]} invalid={invalid[field.base]} hintId="address-hint" onValueChange={value => handleChange(field.base, value)} onBlur={() => handleBlur(field.base)} copy />
 				))}
 			</div>
 

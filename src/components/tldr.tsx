@@ -37,8 +37,8 @@ export default function TLDR({command, characteristics, manualURL, examples}: tl
 					</p>
 
 					<ul className="flex flex-col gap-1.5 pl-5 text-muted-foreground marker:text-primary-500 text-sm leading-relaxed list-disc">
-						{characteristics.map(characteristic => (
-							<li>{characteristic}</li>
+						{characteristics.map((characteristic, index) => (
+							<li key={index}>{characteristic}</li>
 						))}
 						{manualURL && (
 							<li>
