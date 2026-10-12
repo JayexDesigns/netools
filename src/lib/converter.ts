@@ -76,3 +76,35 @@ export function parseCidr(input: string): number | null {
 
 	return Number(digits);
 }
+
+// Percent-encodes an entire URI, only the characters that are not allowed in a URI are escaped so separators like /, ? and & are kept
+// For example `example.com/hello world` -> `example.com/hello%20world`
+export function encodeUri(input: string): string {
+	return encodeURI(input);
+}
+
+// Decodes a percent-encoded entire URI back into its plain form
+// For example `example.com/hello%20world` -> `example.com/hello world`, or `null` when an escape is malformed like `%2` or `%ZZ`
+export function decodeUri(input: string): string | null {
+	try {
+		return decodeURI(input);
+	} catch {
+		return null;
+	}
+}
+
+// Percent-encodes a URI component, every character outside the unreserved set is escaped so the result is safe to embed inside a URI
+// For example `example.com/hello world` -> `example.com%2Fhello%20world`
+export function encodeUriComponent(input: string): string {
+	return encodeURIComponent(input);
+}
+
+// Decodes a percent-encoded URI component back into its plain form
+// For example `example.com%2Fhello%20world` -> `example.com/hello world`, or `null` when an escape is malformed like `%2` or `%ZZ`
+export function decodeUriComponent(input: string): string | null {
+	try {
+		return decodeURIComponent(input);
+	} catch {
+		return null;
+	}
+}

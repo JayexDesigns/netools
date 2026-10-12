@@ -1,16 +1,9 @@
 import CodeBlock from "@/components/code-block";
+import InlineCode from "@/components/inline-code";
 import {ExternalLinkIcon} from "lucide-react";
 
 function formatDescription(description: string) {
-	return description.split("`").map((segment, index) =>
-		index % 2 === 1 ? (
-			<code key={index} className="bg-muted px-1.5 py-0.5 border border-border rounded-md font-mono text-[0.85em] text-foreground">
-				{segment}
-			</code>
-		) : (
-			segment
-		)
-	);
+	return description.split("`").map((segment, index) => (index % 2 === 1 ? <InlineCode key={index}>{segment}</InlineCode> : segment));
 }
 
 type tldrProps = {
@@ -33,7 +26,7 @@ export default function TLDR({command, characteristics, manualURL, examples}: tl
 					</div>
 
 					<p>
-						A simplified manual with usage examples for the <code className="bg-muted px-1.5 py-0.5 border border-border rounded-md font-mono text-[0.85em] text-foreground">{command}</code> command.
+						A simplified manual with usage examples for the <InlineCode className="whitespace-nowrap">{command}</InlineCode> command.
 					</p>
 
 					<ul className="flex flex-col gap-1.5 pl-5 text-muted-foreground marker:text-primary-500 text-sm leading-relaxed list-disc">

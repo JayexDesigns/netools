@@ -1,5 +1,5 @@
 import CopyButton from "@/components/copy-button";
-import {Input} from "@/components/ui/input";
+import {InputGroup, InputGroupAddon, InputGroupInput} from "@/components/ui/input-group";
 import {Label} from "@/components/ui/label";
 import type {FocusEvent} from "react";
 
@@ -12,7 +12,7 @@ type ConverterFieldProps = {
 	onValueChange: (value: string) => void;
 	hintId?: string;
 	type?: "text" | "password" | "url";
-	// Shows a copy button beside the input, empty fields have nothing to copy so their button is disabled
+	// Shows a copy button inside the input, empty fields have nothing to copy so their button is disabled
 	copy?: boolean;
 	// Called when the field loses focus, used to rewrite the value in its canonical form once the user is done typing
 	onBlur?: (event: FocusEvent<HTMLInputElement>) => void;
@@ -24,10 +24,14 @@ export default function ConverterField({id, label, placeholder, value, invalid, 
 			<Label htmlFor={id} className="text-muted-foreground">
 				{label}
 			</Label>
-			<div className="flex items-center gap-1.5">
-				<Input id={id} type={type} autoComplete="off" spellCheck={false} placeholder={placeholder} value={value} aria-invalid={invalid} aria-describedby={hintId} onChange={event => onValueChange(event.target.value)} onBlur={onBlur} className="focus-visible:border-transparent ring-1 ring-white/10 focus-visible:ring-primary-400/50 font-mono" />
-				{copy && <CopyButton value={value} label={label} disabled={value.trim() === ""} className="bg-transparent hover:bg-muted border border-input text-foreground" />}
-			</div>
+			<InputGroup className="has-[[data-slot=input-group-control]:focus-visible]:border-transparent ring-1 ring-white/10 has-[[data-slot=input-group-control]:focus-visible]:ring-primary-400/50">
+				<InputGroupInput id={id} type={type} autoComplete="off" spellCheck={false} placeholder={placeholder} value={value} aria-invalid={invalid} aria-describedby={hintId} onChange={event => onValueChange(event.target.value)} onBlur={onBlur} className="font-mono" />
+				{copy && (
+					<InputGroupAddon align="inline-end">
+						<CopyButton value={value} label={label} disabled={value.trim() === ""} className="bg-transparent hover:bg-muted text-foreground" />
+					</InputGroupAddon>
+				)}
+			</InputGroup>
 		</div>
 	);
 }

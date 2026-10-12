@@ -3,6 +3,7 @@ import BodySection from "@/components/curl/body-section";
 import OutputSection from "@/components/curl/output-section";
 import PairsSection from "@/components/curl/pairs-section";
 import RequestSection from "@/components/curl/request-section";
+import InlineCode from "@/components/inline-code";
 import {buildCurlCommand, type ApiKeyLocation, type AuthType, type BodyType, type HttpMethod, type Pair} from "@/lib/curl";
 import {useState} from "react";
 
@@ -49,9 +50,9 @@ export default function CurlBuilder() {
 
 					<p className="text-muted-foreground leading-relaxed">
 						Build a curl command without touching the terminal: enter a URL, then add query parameters, headers, a body and authorization options in their own sections. Example result:{" "}
-						<code className="bg-muted px-1.5 py-0.5 border border-border rounded-md font-mono text-[0.85em] text-foreground">
+						<InlineCode>
 							curl -X POST 'https://api.example.com/users' -H 'Content-Type: application/json' --data-raw '{"{"}"name": "Ada"{"}"}'
-						</code>
+						</InlineCode>
 						.
 					</p>
 				</header>

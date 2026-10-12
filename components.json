@@ -20,8 +20,5 @@
 		"hooks": "@/hooks"
 	},
 	"menuColor": "default",
-	"menuAccent": "subtle",
-	"registries": {
-		"@svgl": "https://svgl.app/r/{name}.json"
-	}
+	"menuAccent": "subtle"
 }

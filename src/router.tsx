@@ -28,6 +28,7 @@ import TLDRssh from "@/pages/tools/tldr-ssh";
 import TLDRtcpdump from "@/pages/tools/tldr-tcpdump";
 import TLDRtraceroute from "@/pages/tools/tldr-traceroute";
 import TLDRwget from "@/pages/tools/tldr-wget";
+import URLEncoderDecoder from "@/pages/tools/url-encoder-decoder";
 import {Outlet, createRootRoute, createRoute, createRouter} from "@tanstack/react-router";
 
 const rootRoute = createRootRoute({
@@ -52,6 +53,11 @@ const routeTree = rootRoute.addChildren([
 		getParentRoute: () => rootRoute,
 		path: "/curl-builder",
 		component: CurlBuilder
+	}),
+	createRoute({
+		getParentRoute: () => rootRoute,
+		path: "/url-encoder-decoder",
+		component: URLEncoderDecoder
 	}),
 	createRoute({
 		getParentRoute: () => rootRoute,

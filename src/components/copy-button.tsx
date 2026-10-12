@@ -35,7 +35,7 @@ export default function CopyButton({value, label = "value", className, disabled}
 	};
 
 	return (
-		<Button variant="ghost" size="icon-xs" disabled={disabled} onClick={handleCopy} aria-label={copied ? "Copied to clipboard" : `Copy ${label} to clipboard`} className={cn("dark:hover:bg-muted/40 text-muted-foreground hover:text-foreground", className)}>
+		<Button variant="ghost" size="icon-xs" disabled={disabled} onClick={handleCopy} aria-label={copied ? "Copied to clipboard" : `Copy ${label} to clipboard`} className={cn("dark:hover:bg-muted/40 text-muted-foreground hover:text-foreground cursor-pointer", className)}>
 			{copied ? <CheckIcon className="text-primary" /> : <CopyIcon />}
 		</Button>
 	);
