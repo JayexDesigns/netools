@@ -1,12 +1,12 @@
-// Matches a plain IPv4 address with an optional CIDR mask (0-32).
+// Matches a plain IPv4 address with an optional CIDR mask (0-32)
 export const IPV4_REGEX = /^(?:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)\.){3}(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(?:\/(?:3[0-2]|[12]?\d))?$/;
 
 export type SubnetRow = {
 	label: string;
-	// Formatted value, `null` when the field does not exist for this prefix length.
 	value: string | null;
-	// Binary representation of the value, `null` when the field has no binary toggle.
+	// Can be null if the current input can't map to a value
 	binary: string | null;
+	// Can be null if the current value can't or shouldn't have a binary representation
 };
 
 type SpecialPurposeBlock = {
@@ -16,7 +16,7 @@ type SpecialPurposeBlock = {
 	name: string;
 };
 
-// IANA IPv4 Special-Purpose Address Registry.
+// IANA IPv4 Special-Purpose Address Registry
 const SPECIAL_PURPOSE_TABLE: [cidr: string, name: string][] = [
 	["0.0.0.0/8", "This network"],
 	["0.0.0.0/32", "This host on this network"],
@@ -75,14 +75,9 @@ const SPECIAL_PURPOSE_BLOCKS: SpecialPurposeBlock[] = SPECIAL_PURPOSE_TABLE.map(
 	return {start, end: (start | (~subnetMask >>> 0)) >>> 0, prefix: prefixLength, name};
 });
 
-/**
- * Name of the IANA special-purpose space the given range belongs to, suffixed
- * with "(partially)" when the range only overlaps the space instead of being
- * fully inside it, or `null` when there is no match.
- *
- * The space sharing the most addresses with the range wins, with the most
- * specific space breaking ties (so 0.0.0.0/32 beats 0.0.0.0/8).
- */
+// Name of the IANA special-purpose space the given range belongs to
+// Suffixed with "(partially)" when the range only overlaps the space instead of being fully inside it
+// Or `null` when there is no match
 function specialPurpose(rangeStart: number, rangeEnd: number) {
 	let bestBlock: SpecialPurposeBlock | null = null;
 	let bestOverlap = 0;
@@ -90,9 +85,8 @@ function specialPurpose(rangeStart: number, rangeEnd: number) {
 	for (const block of SPECIAL_PURPOSE_BLOCKS) {
 		if (block.start > rangeEnd || block.end < rangeStart) continue;
 
-		// A block fully containing the range overlaps it entirely, so the
-		// widest overlap means the closest fit and the most specific block
-		// breaks ties (so 0.0.0.0/32 beats 0.0.0.0/8).
+		// A block fully containing the range overlaps it entirely
+		// So the widest overlap means the closest fit and the most specific block breaks ties (so 0.0.0.0/32 beats 0.0.0.0/8)
 		const overlap = Math.min(block.end, rangeEnd) - Math.max(block.start, rangeStart) + 1;
 
 		if (bestBlock === null || overlap > bestOverlap || (overlap === bestOverlap && block.prefix > bestBlock.prefix)) {
@@ -102,16 +96,10 @@ function specialPurpose(rangeStart: number, rangeEnd: number) {
 	}
 
 	if (bestBlock === null) return null;
-
 	const contained = bestBlock.start <= rangeStart && bestBlock.end >= rangeEnd;
-
 	return contained ? bestBlock.name : `${bestBlock.name} (partially)`;
 }
 
-/**
- * Validates an IPv4 address with an optional CIDR mask (defaults to /32) and
- * returns the rows to display, or `null` when the input is not valid.
- */
 export function calculateSubnet(input: string): SubnetRow[] | null {
 	const trimmed = input.trim();
 
@@ -125,12 +113,12 @@ export function calculateSubnet(input: string): SubnetRow[] | null {
 	const subnetMask = prefixLength === 0 ? 0 : (0xffffffff << (32 - prefixLength)) >>> 0;
 	const wildcardMask = ~subnetMask >>> 0;
 	const network = (ip & subnetMask) >>> 0;
-	// Networks longer than /30 (point-to-point /31 and host /32) have no broadcast address.
+	// Networks longer than /30 (point-to-point /31 and host /32) have no broadcast address
 	const hasBroadcast = prefixLength <= 30;
 	const broadcast = (network | wildcardMask) >>> 0;
 	const size = 2 ** (32 - prefixLength);
 	const lastAddress = (network + size - 1) >>> 0;
-	// Only assignable addresses: everything between the network and broadcast ones.
+	// Only assignable addresses: everything between the network and broadcast ones
 	const hosts = hasBroadcast ? size - 2 : size;
 	const firstHost = hasBroadcast ? network + 1 : network;
 	const lastHost = hasBroadcast ? broadcast - 1 : lastAddress;
@@ -143,7 +131,7 @@ export function calculateSubnet(input: string): SubnetRow[] | null {
 		{label: "Wildcard Mask", value: toIPv4(wildcardMask), binary: toBinary(wildcardMask)},
 		{label: "Network Size", value: size.toLocaleString("en-US"), binary: null},
 		{label: "Available Hosts", value: hosts.toLocaleString("en-US"), binary: null},
-		{label: "Address Range", value: `${toIPv4(firstHost)} - ${toIPv4(lastHost)}`, binary: `${toBinary(firstHost)} - ${toBinary(lastHost)}`},
+		{label: "Host Address Range", value: `${toIPv4(firstHost)} - ${toIPv4(lastHost)}`, binary: `${toBinary(firstHost)} - ${toBinary(lastHost)}`},
 		{label: "IP Class", value: ipClass(octets[0]), binary: null},
 		{label: "IANA Special Purpose", value: specialPurpose(network, lastAddress), binary: null}
 	];

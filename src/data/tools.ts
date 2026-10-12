@@ -1,6 +1,6 @@
 import {IconHttpGet, IconHttpPost} from "@tabler/icons-react";
 import type {LucideIcon} from "lucide-react";
-import {ArrowLeftRight, ArrowRightLeft, Cable, Calculator, Copy, FolderSync, Gauge, Globe, KeyRound, MapPin, Network, Package, Radar, Route, Router, Rows3, ScanSearch, Shield, Timer, Waypoints, Wifi} from "lucide-react";
+import {ArrowLeftRight, ArrowRightLeft, Cable, Calculator, Copy, FolderSync, Gauge, Globe, KeyRound, MapPin, Network, Package, Radar, Route, Router, Rows3, ScanSearch, Shield, Terminal, Timer, Waypoints, Wifi} from "lucide-react";
 
 export type Tool = {
 	url: string;
@@ -17,10 +17,15 @@ export type ToolSection = {
 
 export const toolSections: ToolSection[] = [
 	{
+		id: "development",
+		title: "Development",
+		tools: [{url: "/curl-builder", name: "Curl Builder", description: "Build a curl command from a URL, query parameters, headers, a request body and authorization options.", icon: Terminal}]
+	},
+	{
 		id: "ipv4",
 		title: "IPv4",
 		tools: [
-			{url: "/ipv4-subnet-calculator", name: "IPv4 Subnet Calculator", description: "Calculate the network address, broadcast address, masks, size, host range and class of an IPv4 address.", icon: Calculator},
+			{url: "/ipv4-subnet-calculator", name: "IPv4 Subnet Calculator", description: "Calculate the network address, broadcast address, masks, size, host range, class and purpose of an IPv4 address.", icon: Calculator},
 			{url: "/ipv4-address-converter", name: "IPv4 Address Converter", description: "Convert an IPv4 address between decimal, binary, hexadecimal and octal notation and a subnet mask between dotted decimal and CIDR.", icon: ArrowRightLeft}
 		]
 	},

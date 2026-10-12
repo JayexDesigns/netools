@@ -22,7 +22,7 @@ export default function CodeBlock({code, lang = "bash"}: CodeBlockProps) {
 		try {
 			return highlighter.codeToHtml(code, {lang, theme: monokai, rootStyle: false});
 		} catch {
-			// Unknown language or unsupported pattern: show the plain code instead.
+			// Unknown language or unsupported pattern: show the plain code instead
 			return null;
 		}
 	}, [code, lang]);
@@ -35,7 +35,7 @@ export default function CodeBlock({code, lang = "bash"}: CodeBlockProps) {
 			</div>
 
 			<ScrollArea>
-				<div className="p-4 text-sm w-max min-w-full">{highlighted ? <div dangerouslySetInnerHTML={{__html: highlighted}} /> : <pre className="whitespace-pre">{code}</pre>}</div>
+				<div className="p-4 w-max min-w-full text-sm">{highlighted ? <div dangerouslySetInnerHTML={{__html: highlighted}} /> : <pre className="whitespace-pre">{code}</pre>}</div>
 				<ScrollBar orientation="horizontal" />
 			</ScrollArea>
 		</div>

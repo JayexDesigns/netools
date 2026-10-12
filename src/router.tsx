@@ -1,8 +1,10 @@
+import BackgroundGlow from "@/components/background-glow";
 import {Header} from "@/components/header";
 import {ThemeProvider} from "@/components/theme-provider";
 import {Toaster} from "@/components/ui/toast";
 import LandingPage from "@/pages/landing/landing-page";
 import NotFound from "@/pages/not-found";
+import CurlBuilder from "@/pages/tools/curl-builder";
 import IPv4AddressConverter from "@/pages/tools/ipv4-address-converter";
 import IPv4SubnetCalculator from "@/pages/tools/ipv4-subnet-calculator";
 import TLDRarp from "@/pages/tools/tldr-arp";
@@ -33,6 +35,7 @@ const rootRoute = createRootRoute({
 		<ThemeProvider defaultTheme="dark" storageKey="theme">
 			<Header />
 			<Toaster />
+			<BackgroundGlow />
 			<Outlet />
 		</ThemeProvider>
 	),
@@ -44,6 +47,11 @@ const routeTree = rootRoute.addChildren([
 		getParentRoute: () => rootRoute,
 		path: "/",
 		component: LandingPage
+	}),
+	createRoute({
+		getParentRoute: () => rootRoute,
+		path: "/curl-builder",
+		component: CurlBuilder
 	}),
 	createRoute({
 		getParentRoute: () => rootRoute,
@@ -164,7 +172,7 @@ const routeTree = rootRoute.addChildren([
 
 const router = createRouter({
 	routeTree,
-	// Fade pages in/out on navigation with the View Transition API, styled by the `page-fade` rules in index.css.
+	// Fade pages in/out on navigation with the View Transition API, styled by the `page-fade` rules in index.css
 	defaultViewTransition: {types: ["page-fade"]}
 });
 

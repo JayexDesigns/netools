@@ -8,15 +8,17 @@ type ConverterFieldProps = {
 	value: string;
 	invalid: boolean;
 	onValueChange: (value: string) => void;
-	// Id of the hint describing the expected format.
 	hintId?: string;
+	type?: "text" | "password" | "url";
 };
 
-export default function ConverterField({id, label, placeholder, value, invalid, onValueChange, hintId}: ConverterFieldProps) {
+export default function ConverterField({id, label, placeholder, value, invalid, onValueChange, hintId, type = "text"}: ConverterFieldProps) {
 	return (
-		<div className="flex flex-col gap-1.5">
-			<Label htmlFor={id} className="text-muted-foreground">{label}</Label>
-			<Input id={id} type="text" autoComplete="off" spellCheck={false} placeholder={placeholder} value={value} aria-invalid={invalid} aria-describedby={hintId} onChange={event => onValueChange(event.target.value)} className="font-mono" />
+		<div className="flex flex-col gap-2">
+			<Label htmlFor={id} className="text-muted-foreground">
+				{label}
+			</Label>
+			<Input id={id} type={type} autoComplete="off" spellCheck={false} placeholder={placeholder} value={value} aria-invalid={invalid} aria-describedby={hintId} onChange={event => onValueChange(event.target.value)} className="focus-visible:border-transparent ring-1 ring-white/10 focus-visible:ring-primary-400/50 font-mono" />
 		</div>
 	);
 }

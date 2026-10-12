@@ -1,5 +1,5 @@
 import CopyButton from "@/components/copy-button";
-import {Table, TableBody, TableCell, TableHead, TableHeader, TableRow} from "@/components/ui/table";
+import {Table, TableBody, TableCell, TableRow} from "@/components/ui/table";
 import {Toggle} from "@/components/ui/toggle";
 import type {SubnetRow} from "@/lib/subnet";
 import {cn} from "cn";
@@ -42,12 +42,6 @@ export default function SubnetTable({rows}: SubnetTableProps) {
 	return (
 		<div className="bg-muted/40 dark:bg-black/30 border border-border rounded-xl overflow-hidden">
 			<Table>
-				<TableHeader>
-					<TableRow>
-						<TableHead>Property</TableHead>
-						<TableHead className="text-right">Value</TableHead>
-					</TableRow>
-				</TableHeader>
 				<TableBody>
 					{rows.map(row => (
 						<ResultRow key={row.label} row={row} />

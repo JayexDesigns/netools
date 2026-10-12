@@ -9,7 +9,7 @@ export default function ToolsExplorer() {
 	const [query, setQuery] = useState("");
 	const [collapsedSections, setCollapsedSections] = useState<Record<string, boolean>>({});
 
-	// Re-open every section while searching so matches are never hidden.
+	// Re-open every section while searching so matches are never hidden
 	useEffect(() => {
 		if (query.trim().length > 0) {
 			setCollapsedSections({});

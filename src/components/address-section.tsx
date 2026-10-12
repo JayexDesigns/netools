@@ -19,7 +19,6 @@ export default function AddressSection() {
 	const hasInvalid = FIELDS.some(field => invalid[field.base]);
 
 	function handleChange(base: AddressBase, raw: string) {
-		// Clearing a field clears the whole group instead of reporting an error.
 		if (raw.trim() === "") {
 			setValues(EMPTY_VALUES);
 			setInvalid(NO_INVALID);
@@ -29,13 +28,13 @@ export default function AddressSection() {
 		const parsed = parseAddress(raw, base);
 
 		if (parsed === null) {
-			// Keep the other fields as they are until the address parses again.
+			// Keep the other fields as they are until the address parses again
 			setValues(previous => ({...previous, [base]: raw}));
 			setInvalid(previous => ({...previous, [base]: true}));
 			return;
 		}
 
-		// A valid address rewrites every field, keeping the edited one as typed.
+		// A valid address rewrites every field, keeping the edited one as typed
 		const next = {...EMPTY_VALUES};
 		for (const field of FIELDS) next[field.base] = field.base === base ? raw : formatAddress(parsed, field.base);
 
@@ -44,9 +43,11 @@ export default function AddressSection() {
 	}
 
 	return (
-		<section aria-labelledby="address-heading" className="flex flex-col gap-4 bg-muted/40 dark:bg-black/30 border border-border rounded-xl p-4 sm:p-5">
+		<section aria-labelledby="address-heading" className="flex flex-col gap-4 bg-muted/40 dark:bg-black/30 p-4 sm:p-5 border border-border rounded-xl">
 			<div className="flex flex-col gap-1">
-				<h2 id="address-heading" className="font-medium text-lg">Address</h2>
+				<h2 id="address-heading" className="font-medium text-lg">
+					Address
+				</h2>
 				<p className="text-muted-foreground text-sm leading-relaxed">Every field holds the same address in a different notation.</p>
 			</div>
 

@@ -1,4 +1,3 @@
-import BackgroundGlow from "@/components/background-glow";
 import CodeBlock from "@/components/code-block";
 import {ExternalLinkIcon} from "lucide-react";
 
@@ -27,8 +26,6 @@ type tldrProps = {
 export default function TLDR({command, characteristics, manualURL, examples}: tldrProps) {
 	return (
 		<div className="isolate relative min-h-dvh overflow-x-clip text-foreground">
-			<BackgroundGlow />
-
 			<main className="relative mx-auto px-4 sm:px-6 pt-24 sm:pt-28 pb-24 max-w-6xl">
 				<header className="flex flex-col gap-5">
 					<div className="flex items-center gap-2.5">
