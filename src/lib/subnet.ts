@@ -150,7 +150,7 @@ export function prefixCapacity(prefix: number): number {
 }
 
 // Shortest prefix whose usable range fits the given amount of hosts, or null when no subnet is big enough
-// For example 30 hosts -> /26 (62 usable addresses), while 62 hosts -> /25
+// For example 30 hosts -> /27 (30 usable addresses), while 31 hosts -> /26
 export function hostsToPrefix(hosts: number): number | null {
 	if (!Number.isInteger(hosts) || hosts < 1 || hosts > prefixCapacity(0)) return null;
 
