@@ -51,6 +51,11 @@ const routeTree = rootRoute.addChildren([
 	}),
 	createRoute({
 		getParentRoute: () => rootRoute,
+		path: "/http-status-codes",
+		component: lazyRouteComponent(() => import("@/pages/tools/http-status-codes"))
+	}),
+	createRoute({
+		getParentRoute: () => rootRoute,
 		path: "/ipv4-subnet-calculator",
 		component: lazyRouteComponent(() => import("@/pages/tools/ipv4-subnet-calculator"))
 	}),
