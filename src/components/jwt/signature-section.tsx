@@ -1,5 +1,5 @@
 import CardSection from "@/components/card-section";
-import ConverterField from "@/components/converter-field";
+import InputField from "@/components/input-field";
 import {Badge} from "@/components/ui/badge";
 import {Label} from "@/components/ui/label";
 import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/components/ui/select";
@@ -81,7 +81,7 @@ export default function SignatureSection({mode, alg, signingKey, verifyState, si
 			{info.kind === "none" ? (
 				<p className="text-muted-foreground text-sm">Tokens with alg none carry no signature, so no key is needed.</p>
 			) : info.kind === "HMAC" ? (
-				<ConverterField id="jwt-secret" label="Secret" placeholder="your-256-bit-secret" value={signingKey} invalid={false} hintId="jwt-signature-hint" onValueChange={onSigningKeyChange} type="password" copy />
+				<InputField id="jwt-secret" label="Secret" placeholder="your-256-bit-secret" value={signingKey} invalid={false} hintId="jwt-signature-hint" onValueChange={onSigningKeyChange} type="password" copy />
 			) : (
 				<div className="flex flex-col gap-2">
 					<Label htmlFor="jwt-key-input" className="text-muted-foreground">

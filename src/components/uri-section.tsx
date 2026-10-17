@@ -1,5 +1,5 @@
 import CardSection from "@/components/card-section";
-import ConverterField from "@/components/converter-field";
+import InputField from "@/components/input-field";
 import {useState} from "react";
 
 type UriSectionProps = {
@@ -41,8 +41,8 @@ export default function UriSection({id, title, description, invalidHint, decoded
 	return (
 		<CardSection id={id} title={title} description={description}>
 			<div className="gap-4 grid sm:grid-cols-2">
-				<ConverterField id={`${id}-decoded`} label="Decoded" placeholder={decodedPlaceholder} value={decoded} invalid={false} hintId={`${id}-hint`} onValueChange={handleDecodedChange} copy />
-				<ConverterField id={`${id}-encoded`} label="Encoded" placeholder={encodedPlaceholder} value={encoded} invalid={encodedInvalid} hintId={`${id}-hint`} onValueChange={handleEncodedChange} copy />
+				<InputField id={`${id}-decoded`} label="Decoded" placeholder={decodedPlaceholder} value={decoded} invalid={false} hintId={`${id}-hint`} onValueChange={handleDecodedChange} copy />
+				<InputField id={`${id}-encoded`} label="Encoded" placeholder={encodedPlaceholder} value={encoded} invalid={encodedInvalid} hintId={`${id}-hint`} onValueChange={handleEncodedChange} copy />
 			</div>
 
 			<p id={`${id}-hint`} className={encodedInvalid ? "text-destructive text-sm" : "text-muted-foreground text-sm"}>

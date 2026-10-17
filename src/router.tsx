@@ -61,6 +61,11 @@ const routeTree = rootRoute.addChildren([
 	}),
 	createRoute({
 		getParentRoute: () => rootRoute,
+		path: "/ipv4-subnet-creator",
+		component: lazyRouteComponent(() => import("@/pages/tools/ipv4-subnet-creator"))
+	}),
+	createRoute({
+		getParentRoute: () => rootRoute,
 		path: "/ipv4-address-converter",
 		component: lazyRouteComponent(() => import("@/pages/tools/ipv4-address-converter"))
 	}),

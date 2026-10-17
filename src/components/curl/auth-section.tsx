@@ -1,5 +1,5 @@
 import CardSection from "@/components/card-section";
-import ConverterField from "@/components/converter-field";
+import InputField from "@/components/input-field";
 import {Label} from "@/components/ui/label";
 import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/components/ui/select";
 import {API_KEY_LOCATIONS, AUTH_TYPES, type ApiKeyLocation, type AuthType} from "@/lib/curl";
@@ -41,18 +41,18 @@ export default function AuthSection({authType, basicUsername, basicPassword, bea
 
 				{authType === "basic" && (
 					<div className="gap-3 grid grid-cols-1 sm:grid-cols-2">
-						<ConverterField id="curl-basic-username" label="Username" placeholder="admin" value={basicUsername} invalid={false} onValueChange={onBasicUsernameChange} />
-						<ConverterField id="curl-basic-password" label="Password" placeholder="s3cret" value={basicPassword} invalid={false} onValueChange={onBasicPasswordChange} type="password" />
+						<InputField id="curl-basic-username" label="Username" placeholder="admin" value={basicUsername} invalid={false} onValueChange={onBasicUsernameChange} />
+						<InputField id="curl-basic-password" label="Password" placeholder="s3cret" value={basicPassword} invalid={false} onValueChange={onBasicPasswordChange} type="password" />
 					</div>
 				)}
 
-				{authType === "bearer" && <ConverterField id="curl-bearer-token" label="Token" placeholder="eyJhbGciOiJIUzI1NiIs..." value={bearerToken} invalid={false} onValueChange={onBearerTokenChange} type="password" />}
+				{authType === "bearer" && <InputField id="curl-bearer-token" label="Token" placeholder="eyJhbGciOiJIUzI1NiIs..." value={bearerToken} invalid={false} onValueChange={onBearerTokenChange} type="password" />}
 
 				{authType === "api-key" && (
 					<div className="flex flex-col gap-3">
 						<div className="gap-3 grid grid-cols-1 sm:grid-cols-2">
-							<ConverterField id="curl-api-key-name" label="Key name" placeholder="X-API-Key" value={apiKeyName} invalid={false} onValueChange={onApiKeyNameChange} />
-							<ConverterField id="curl-api-key-value" label="Key value" placeholder="my-secret-key" value={apiKeyValue} invalid={false} onValueChange={onApiKeyValueChange} type="password" />
+							<InputField id="curl-api-key-name" label="Key name" placeholder="X-API-Key" value={apiKeyName} invalid={false} onValueChange={onApiKeyNameChange} />
+							<InputField id="curl-api-key-value" label="Key value" placeholder="my-secret-key" value={apiKeyValue} invalid={false} onValueChange={onApiKeyValueChange} type="password" />
 						</div>
 
 						<div className="flex flex-col gap-1.5">

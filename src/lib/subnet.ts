@@ -128,3 +128,62 @@ export function calculateSubnet(input: string): SubnetRow[] | null {
 		{label: "IANA Special Purpose", value: specialPurpose(network, lastAddress), binary: null}
 	];
 }
+
+export type CreatedSubnet = {
+	// True when the base address was not the first address of the fitting subnet, so the network moved down to the closest one that still contains it
+	adjusted: boolean;
+	// Network address and prefix length the base address was placed in
+	network: string;
+	prefix: number;
+	rows: SubnetRow[];
+};
+
+// Either a subnet created around the base address, or the name of the input that could not be read
+export type CreateSubnetResult = CreatedSubnet | {error: "base" | "hosts"};
+
+// Hosts a subnet of the given prefix can hold: a /32 holds one address and a /31 holds two (RFC 3021),
+// every shorter subnet loses its network and broadcast addresses to the usable range
+export function prefixCapacity(prefix: number): number {
+	if (prefix === 32) return 1;
+	if (prefix === 31) return 2;
+	return 2 ** (32 - prefix) - 2;
+}
+
+// Shortest prefix whose usable range fits the given amount of hosts, or null when no subnet is big enough
+// For example 30 hosts -> /26 (62 usable addresses), while 62 hosts -> /25
+export function hostsToPrefix(hosts: number): number | null {
+	if (!Number.isInteger(hosts) || hosts < 1 || hosts > prefixCapacity(0)) return null;
+
+	for (let prefix = 32; prefix >= 0; prefix--) {
+		if (prefixCapacity(prefix) >= hosts) return prefix;
+	}
+
+	return null;
+}
+
+// Builds the smallest subnet that fits the amount of hosts and holds the base address:
+// its network address is the base address itself when the address sits on a boundary of that subnet,
+// and the closest boundary below it otherwise, since that is the only network of the size that still contains the address
+export function createSubnet(baseInput: string, hostsInput: string): CreateSubnetResult {
+	const base = baseInput.trim();
+	// The tool builds the mask itself, so an address that already carries one is not a base address
+	if (!IPV4_REGEX.test(base) || base.includes("/")) return {error: "base"};
+
+	// Whole number of hosts without grouping separators or a leading zero, like /01
+	const hosts = hostsInput.trim();
+	if (!/^(?:0|[1-9]\d*)$/.test(hosts)) return {error: "hosts"};
+
+	const prefix = hostsToPrefix(Number(hosts));
+	if (prefix === null) return {error: "hosts"};
+
+	// The regex above already guarantees a valid dotted decimal address
+	const ip = parseAddress(base, "decimal");
+	if (ip === null) return {error: "base"};
+
+	// Zeroing every bit below the mask rounds the address down to the closest network boundary that still contains it
+	const network = (ip & cidrToMask(prefix)) >>> 0;
+	const rows = calculateSubnet(`${formatAddress(network, "decimal")}/${prefix}`);
+	if (rows === null) return {error: "base"};
+
+	return {adjusted: network !== ip, network: formatAddress(network, "decimal"), prefix, rows};
+}

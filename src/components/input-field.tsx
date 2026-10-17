@@ -3,7 +3,7 @@ import {InputGroup, InputGroupAddon, InputGroupInput} from "@/components/ui/inpu
 import {Label} from "@/components/ui/label";
 import type {FocusEvent} from "react";
 
-type ConverterFieldProps = {
+type InputFieldProps = {
 	id: string;
 	label: string;
 	placeholder: string;
@@ -18,7 +18,7 @@ type ConverterFieldProps = {
 	onBlur?: (event: FocusEvent<HTMLInputElement>) => void;
 };
 
-export default function ConverterField({id, label, placeholder, value, invalid, onValueChange, hintId, type = "text", copy = false, onBlur}: ConverterFieldProps) {
+export default function InputField({id, label, placeholder, value, invalid, onValueChange, hintId, type = "text", copy = false, onBlur}: InputFieldProps) {
 	return (
 		<div className="flex flex-col gap-2">
 			<Label htmlFor={id} className="text-muted-foreground">

@@ -44,6 +44,22 @@ export function formatAddress(value: number, base: AddressBase): string {
 	return [24, 16, 8, 0].map(shift => OCTET_FORMAT[base]((value >>> shift) & 255)).join(".");
 }
 
+// Parses the plain integer form of an address, the 32-bit number the dotted notations are built from
+// For example `3232235786` for `192.168.1.10`, or null when it is not a whole number in the 0-4294967295 range
+export function parseIntegerAddress(input: string): number | null {
+	const trimmed = input.trim();
+	if (!/^\d+$/.test(trimmed)) return null;
+
+	const value = Number(trimmed);
+	return value <= 0xffffffff ? value : null;
+}
+
+// Formats a 32-bit value as its plain integer form, without dots or any other separator
+// For example `3232235786` for `192.168.1.10`
+export function formatIntegerAddress(value: number): string {
+	return value.toString();
+}
+
 // Numeric subnet mask for a CIDR prefix length (0-32)
 // For example `16` -> `4294901760`, which is `255.255.0.0` in dotted decimal
 export function cidrToMask(prefix: number): number {

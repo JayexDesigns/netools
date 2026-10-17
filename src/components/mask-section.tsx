@@ -1,4 +1,4 @@
-import ConverterField from "@/components/converter-field";
+import InputField from "@/components/input-field";
 import {formatMask, parseCidr, parseMask} from "@/lib/converter";
 import {useState} from "react";
 
@@ -76,8 +76,8 @@ export default function MaskSection() {
 			</div>
 
 			<div className="gap-4 grid sm:grid-cols-2">
-				<ConverterField id="mask-decimal" label="Mask (decimal)" placeholder="255.255.255.0" value={mask} invalid={maskInvalid} hintId="mask-hint" onValueChange={handleMaskChange} onBlur={handleMaskBlur} copy />
-				<ConverterField id="mask-cidr" label="Mask (CIDR)" placeholder="/24" value={cidr} invalid={cidrInvalid} hintId="mask-hint" onValueChange={handleCidrChange} copy />
+				<InputField id="mask-decimal" label="Mask (decimal)" placeholder="255.255.255.0" value={mask} invalid={maskInvalid} hintId="mask-hint" onValueChange={handleMaskChange} onBlur={handleMaskBlur} copy />
+				<InputField id="mask-cidr" label="Mask (CIDR)" placeholder="/24" value={cidr} invalid={cidrInvalid} hintId="mask-hint" onValueChange={handleCidrChange} copy />
 			</div>
 
 			<p id="mask-hint" className={hasInvalid ? "text-destructive text-sm" : "text-muted-foreground text-sm"}>
