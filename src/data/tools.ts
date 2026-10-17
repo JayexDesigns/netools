@@ -1,4 +1,4 @@
-import {IconHttpGet, IconHttpPost} from "@tabler/icons-react";
+import {IconHttpGet, IconHttpPost, IconTopologyStar3} from "@tabler/icons-react";
 import type {LucideIcon} from "lucide-react";
 import {ArrowLeftRight, ArrowRightLeft, Cable, Calculator, Copy, FolderSync, Gauge, Globe, KeyRound, Link2, MapPin, Network, Package, Radar, Route, Router, Rows3, ScanSearch, Shield, ShieldCheck, Terminal, Timer, Waypoints, Wifi} from "lucide-react";
 
@@ -25,6 +25,7 @@ export const toolSections: ToolSection[] = [
 		id: "development",
 		title: "Development",
 		tools: [
+			{url: "/network-diagram-canvas", name: "Network Diagram Canvas", description: "Draw a network topology on a drag-and-drop canvas: add devices by category, connect them, edit their properties and export the diagram as a PNG.", icon: IconTopologyStar3},
 			{url: "/curl-builder", name: "Curl Builder", description: "Build a curl command from a URL, query parameters, headers, a request body and authorization options.", icon: Terminal},
 			{url: "/jwt-encoder-decoder", name: "JWT Encoder/Decoder", description: "Decode, build and sign JSON Web Tokens with HMAC, RSA or ECDSA keys, checking signatures and claim expiry entirely in the browser.", icon: ShieldCheck},
 			{url: "/url-encoder-decoder", name: "URL Encoder/Decoder", description: "Convert a URI between plain text and percent-encoded form, for example example.com/hello world ⇄ example.com/hello%20world.", icon: Link2}

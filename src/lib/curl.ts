@@ -1,3 +1,5 @@
+import {generateId} from "@/lib/id";
+
 export const HTTP_METHODS = ["GET", "POST", "PUT", "PATCH", "DELETE", "HEAD", "OPTIONS"] as const;
 
 export type HttpMethod = (typeof HTTP_METHODS)[number];
@@ -53,7 +55,7 @@ export type CurlRequest = {
 };
 
 export function createPair(): Pair {
-	return {id: crypto.randomUUID(), enabled: true, key: "", value: ""};
+	return {id: generateId(), enabled: true, key: "", value: ""};
 }
 
 // Wraps a value in single quotes so the shell passes it to curl untouched, escaping any embedded quote

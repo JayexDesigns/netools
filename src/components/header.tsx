@@ -6,7 +6,7 @@ import {ScrollArea} from "@/components/ui/scroll-area";
 import {toolLabel, toolSections, type ToolSection} from "@/data/tools";
 import {Link} from "@tanstack/react-router";
 
-const GITHUB_URL = "https://github.com/JayexDesigns";
+const GITHUB_URL = "https://github.com/JayexDesigns/netools";
 
 function SectionMenu({section}: {section: ToolSection}) {
 	return (

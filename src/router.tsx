@@ -4,33 +4,7 @@ import {ThemeProvider} from "@/components/theme-provider";
 import {Toaster} from "@/components/ui/toast";
 import LandingPage from "@/pages/landing/landing-page";
 import NotFound from "@/pages/not-found";
-import CurlBuilder from "@/pages/tools/curl-builder";
-import IPv4AddressConverter from "@/pages/tools/ipv4-address-converter";
-import IPv4SubnetCalculator from "@/pages/tools/ipv4-subnet-calculator";
-import JwtEncoderDecoder from "@/pages/tools/jwt-encoder-decoder";
-import TLDRarp from "@/pages/tools/tldr-arp";
-import TLDRcurl from "@/pages/tools/tldr-curl";
-import TLDRdig from "@/pages/tools/tldr-dig";
-import TLDRftp from "@/pages/tools/tldr-ftp";
-import TLDRip from "@/pages/tools/tldr-ip";
-import TLDRiperf3 from "@/pages/tools/tldr-iperf3";
-import TLDRiw from "@/pages/tools/tldr-iw";
-import TLDRmtr from "@/pages/tools/tldr-mtr";
-import TLDRnc from "@/pages/tools/tldr-nc";
-import TLDRnetworkctl from "@/pages/tools/tldr-networkctl";
-import TLDRnmap from "@/pages/tools/tldr-nmap";
-import TLDRping from "@/pages/tools/tldr-ping";
-import TLDRroute from "@/pages/tools/tldr-route";
-import TLDRrsync from "@/pages/tools/tldr-rsync";
-import TLDRscp from "@/pages/tools/tldr-scp";
-import TLDRsftp from "@/pages/tools/tldr-sftp";
-import TLDRss from "@/pages/tools/tldr-ss";
-import TLDRssh from "@/pages/tools/tldr-ssh";
-import TLDRtcpdump from "@/pages/tools/tldr-tcpdump";
-import TLDRtraceroute from "@/pages/tools/tldr-traceroute";
-import TLDRwget from "@/pages/tools/tldr-wget";
-import URLEncoderDecoder from "@/pages/tools/url-encoder-decoder";
-import {Outlet, createRootRoute, createRoute, createRouter} from "@tanstack/react-router";
+import {Outlet, createRootRoute, createRoute, createRouter, lazyRouteComponent} from "@tanstack/react-router";
 
 const rootRoute = createRootRoute({
 	component: () => (
@@ -44,6 +18,11 @@ const rootRoute = createRootRoute({
 	notFoundComponent: NotFound
 });
 
+/*
+	Tool pages are code-split so the phone only downloads and parses a tool's own chunk
+	(plus its libraries, e.g. React Flow for the diagram) when that tool is opened,
+	instead of shipping every tool in the single entry bundle.
+*/
 const routeTree = rootRoute.addChildren([
 	createRoute({
 		getParentRoute: () => rootRoute,
@@ -52,133 +31,138 @@ const routeTree = rootRoute.addChildren([
 	}),
 	createRoute({
 		getParentRoute: () => rootRoute,
+		path: "/network-diagram-canvas",
+		component: lazyRouteComponent(() => import("@/pages/tools/network-diagram-canvas"))
+	}),
+	createRoute({
+		getParentRoute: () => rootRoute,
 		path: "/curl-builder",
-		component: CurlBuilder
+		component: lazyRouteComponent(() => import("@/pages/tools/curl-builder"))
 	}),
 	createRoute({
 		getParentRoute: () => rootRoute,
 		path: "/jwt-encoder-decoder",
-		component: JwtEncoderDecoder
+		component: lazyRouteComponent(() => import("@/pages/tools/jwt-encoder-decoder"))
 	}),
 	createRoute({
 		getParentRoute: () => rootRoute,
 		path: "/url-encoder-decoder",
-		component: URLEncoderDecoder
+		component: lazyRouteComponent(() => import("@/pages/tools/url-encoder-decoder"))
 	}),
 	createRoute({
 		getParentRoute: () => rootRoute,
 		path: "/ipv4-subnet-calculator",
-		component: IPv4SubnetCalculator
+		component: lazyRouteComponent(() => import("@/pages/tools/ipv4-subnet-calculator"))
 	}),
 	createRoute({
 		getParentRoute: () => rootRoute,
 		path: "/ipv4-address-converter",
-		component: IPv4AddressConverter
+		component: lazyRouteComponent(() => import("@/pages/tools/ipv4-address-converter"))
 	}),
 	createRoute({
 		getParentRoute: () => rootRoute,
 		path: "/tldr-arp",
-		component: TLDRarp
+		component: lazyRouteComponent(() => import("@/pages/tools/tldr-arp"))
 	}),
 	createRoute({
 		getParentRoute: () => rootRoute,
 		path: "/tldr-curl",
-		component: TLDRcurl
+		component: lazyRouteComponent(() => import("@/pages/tools/tldr-curl"))
 	}),
 	createRoute({
 		getParentRoute: () => rootRoute,
 		path: "/tldr-dig",
-		component: TLDRdig
+		component: lazyRouteComponent(() => import("@/pages/tools/tldr-dig"))
 	}),
 	createRoute({
 		getParentRoute: () => rootRoute,
 		path: "/tldr-ftp",
-		component: TLDRftp
+		component: lazyRouteComponent(() => import("@/pages/tools/tldr-ftp"))
 	}),
 	createRoute({
 		getParentRoute: () => rootRoute,
 		path: "/tldr-ip",
-		component: TLDRip
+		component: lazyRouteComponent(() => import("@/pages/tools/tldr-ip"))
 	}),
 	createRoute({
 		getParentRoute: () => rootRoute,
 		path: "/tldr-iperf3",
-		component: TLDRiperf3
+		component: lazyRouteComponent(() => import("@/pages/tools/tldr-iperf3"))
 	}),
 	createRoute({
 		getParentRoute: () => rootRoute,
 		path: "/tldr-iw",
-		component: TLDRiw
+		component: lazyRouteComponent(() => import("@/pages/tools/tldr-iw"))
 	}),
 	createRoute({
 		getParentRoute: () => rootRoute,
 		path: "/tldr-mtr",
-		component: TLDRmtr
+		component: lazyRouteComponent(() => import("@/pages/tools/tldr-mtr"))
 	}),
 	createRoute({
 		getParentRoute: () => rootRoute,
 		path: "/tldr-nc",
-		component: TLDRnc
+		component: lazyRouteComponent(() => import("@/pages/tools/tldr-nc"))
 	}),
 	createRoute({
 		getParentRoute: () => rootRoute,
 		path: "/tldr-networkctl",
-		component: TLDRnetworkctl
+		component: lazyRouteComponent(() => import("@/pages/tools/tldr-networkctl"))
 	}),
 	createRoute({
 		getParentRoute: () => rootRoute,
 		path: "/tldr-nmap",
-		component: TLDRnmap
+		component: lazyRouteComponent(() => import("@/pages/tools/tldr-nmap"))
 	}),
 	createRoute({
 		getParentRoute: () => rootRoute,
 		path: "/tldr-ping",
-		component: TLDRping
+		component: lazyRouteComponent(() => import("@/pages/tools/tldr-ping"))
 	}),
 	createRoute({
 		getParentRoute: () => rootRoute,
 		path: "/tldr-route",
-		component: TLDRroute
+		component: lazyRouteComponent(() => import("@/pages/tools/tldr-route"))
 	}),
 	createRoute({
 		getParentRoute: () => rootRoute,
 		path: "/tldr-rsync",
-		component: TLDRrsync
+		component: lazyRouteComponent(() => import("@/pages/tools/tldr-rsync"))
 	}),
 	createRoute({
 		getParentRoute: () => rootRoute,
 		path: "/tldr-scp",
-		component: TLDRscp
+		component: lazyRouteComponent(() => import("@/pages/tools/tldr-scp"))
 	}),
 	createRoute({
 		getParentRoute: () => rootRoute,
 		path: "/tldr-sftp",
-		component: TLDRsftp
+		component: lazyRouteComponent(() => import("@/pages/tools/tldr-sftp"))
 	}),
 	createRoute({
 		getParentRoute: () => rootRoute,
 		path: "/tldr-ss",
-		component: TLDRss
+		component: lazyRouteComponent(() => import("@/pages/tools/tldr-ss"))
 	}),
 	createRoute({
 		getParentRoute: () => rootRoute,
 		path: "/tldr-ssh",
-		component: TLDRssh
+		component: lazyRouteComponent(() => import("@/pages/tools/tldr-ssh"))
 	}),
 	createRoute({
 		getParentRoute: () => rootRoute,
 		path: "/tldr-tcpdump",
-		component: TLDRtcpdump
+		component: lazyRouteComponent(() => import("@/pages/tools/tldr-tcpdump"))
 	}),
 	createRoute({
 		getParentRoute: () => rootRoute,
 		path: "/tldr-traceroute",
-		component: TLDRtraceroute
+		component: lazyRouteComponent(() => import("@/pages/tools/tldr-traceroute"))
 	}),
 	createRoute({
 		getParentRoute: () => rootRoute,
 		path: "/tldr-wget",
-		component: TLDRwget
+		component: lazyRouteComponent(() => import("@/pages/tools/tldr-wget"))
 	})
 ]);
 
