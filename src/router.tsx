@@ -178,6 +178,9 @@ const routeTree = rootRoute.addChildren([
 
 const router = createRouter({
 	routeTree,
+	// GitHub Pages serves the app from /<repo>/ while the Docker image serves it from /: the base
+	// baked in at build time (Vite rewrites BASE_URL from its --base flag) is what the router strips
+	basepath: import.meta.env.BASE_URL,
 	// Fade pages in/out on navigation with the View Transition API, styled by the `page-fade` rules in index.css
 	defaultViewTransition: {types: ["page-fade"]}
 });
