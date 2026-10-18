@@ -12,8 +12,9 @@ export default defineConfig({
 	test: {
 		// Globals let @testing-library/react hook its automatic cleanup into afterEach
 		globals: true,
-		include: ["src/**/*.test.{ts,tsx}"],
-		setupFiles: ["./src/test/setup.ts"],
+		// All tests live in tests/, mirroring the structure of src/
+		include: ["tests/**/*.test.{ts,tsx}"],
+		setupFiles: ["./tests/setup.ts"],
 		// Library and data tests run on node, component tests opt into jsdom with a `@vitest-environment jsdom` docblock
 		environment: "node"
 	}

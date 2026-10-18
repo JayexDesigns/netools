@@ -1,0 +1,7 @@
+services:
+  netools:
+    image: 'netools:latest'
+    container_name: netools
+    restart: unless-stopped
+    ports:
+      - '80:80'
