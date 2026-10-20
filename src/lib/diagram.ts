@@ -180,11 +180,14 @@ export function createEdge(connection: Connection): DiagramEdge {
 
 export const sampleNodes: DiagramNode[] = [
 	{id: "sample-internet", type: "device", position: {x: 300, y: 20}, data: {name: "Internet", description: "ISP uplink", kind: "internet", category: "cloud"}},
-	{id: "sample-router", type: "device", position: {x: 300, y: 170}, data: {name: "Core Router", description: "192.168.1.1", kind: "router", category: "network"}},
-	{id: "sample-firewall", type: "device", position: {x: 80, y: 330}, data: {name: "Perimeter Firewall", description: "192.168.1.254", kind: "firewall", category: "security"}},
-	{id: "sample-switch", type: "device", position: {x: 520, y: 330}, data: {name: "Core Switch", description: "192.168.1.2", kind: "switch", category: "network"}},
-	{id: "sample-server", type: "device", position: {x: 360, y: 490}, data: {name: "Web Server", description: "192.168.1.10", kind: "server", category: "compute"}},
-	{id: "sample-database", type: "device", position: {x: 580, y: 490}, data: {name: "Database", description: "192.168.1.11", kind: "database", category: "compute"}}
+	{id: "sample-router", type: "device", position: {x: 300, y: 160}, data: {name: "Core Router", description: "192.168.1.1", kind: "router", category: "network"}},
+	{id: "sample-firewall", type: "device", position: {x: 300, y: 300}, data: {name: "Perimeter Firewall", description: "192.168.1.254", kind: "firewall", category: "security"}},
+	{id: "sample-switch", type: "device", position: {x: 300, y: 440}, data: {name: "Managed Switch", description: "192.168.1.2", kind: "switch", category: "network"}},
+	{id: "sample-database", type: "device", position: {x: 620, y: 580}, data: {name: "Database", description: "192.168.1.20", kind: "database", category: "compute"}},
+	{id: "sample-load-balancer", type: "device", position: {x: 300, y: 580}, data: {name: "Load Balancer", description: "192.168.1.100", kind: "load-balancer", category: "security"}},
+	{id: "sample-web-1", type: "device", position: {x: 100, y: 720}, data: {name: "Web Server 1", description: "192.168.1.10", kind: "server", category: "compute"}},
+	{id: "sample-web-2", type: "device", position: {x: 300, y: 720}, data: {name: "Web Server 2", description: "192.168.1.11", kind: "server", category: "compute"}},
+	{id: "sample-web-3", type: "device", position: {x: 500, y: 720}, data: {name: "Web Server 3", description: "192.168.1.12", kind: "server", category: "compute"}}
 ];
 
 function sampleEdge(id: string, source: string, target: string, label: string, color: string, animated = false): DiagramEdge {
@@ -201,4 +204,4 @@ function sampleEdge(id: string, source: string, target: string, label: string, c
 	};
 }
 
-export const sampleEdges: DiagramEdge[] = [sampleEdge("sample-edge-wan", "sample-internet", "sample-router", "WAN", categoryInfo("cloud").color, true), sampleEdge("sample-edge-gi1", "sample-router", "sample-firewall", "", categoryInfo("network").color), sampleEdge("sample-edge-gi2", "sample-router", "sample-switch", "", categoryInfo("network").color), sampleEdge("sample-edge-lan", "sample-switch", "sample-server", "", categoryInfo("compute").color), sampleEdge("sample-edge-db", "sample-switch", "sample-database", "", categoryInfo("compute").color)];
+export const sampleEdges: DiagramEdge[] = [sampleEdge("sample-edge-wan", "sample-internet", "sample-router", "WAN", categoryInfo("cloud").color, true), sampleEdge("sample-edge-gi1", "sample-router", "sample-firewall", "", categoryInfo("network").color), sampleEdge("sample-edge-gi2", "sample-firewall", "sample-switch", "", categoryInfo("security").color), sampleEdge("sample-edge-lb", "sample-switch", "sample-load-balancer", "", categoryInfo("network").color), sampleEdge("sample-edge-web1", "sample-load-balancer", "sample-web-1", "", categoryInfo("compute").color), sampleEdge("sample-edge-web2", "sample-load-balancer", "sample-web-2", "", categoryInfo("compute").color), sampleEdge("sample-edge-web3", "sample-load-balancer", "sample-web-3", "", categoryInfo("compute").color), sampleEdge("sample-edge-db", "sample-switch", "sample-database", "", categoryInfo("compute").color)];

@@ -1,7 +1,7 @@
+import InlineCode from "@/components/inline-code";
 import PartsSection from "@/components/jwt/parts-section";
 import SignatureSection from "@/components/jwt/signature-section";
 import TokenSection from "@/components/jwt/token-section";
-import InlineCode from "@/components/inline-code";
 import {Label} from "@/components/ui/label";
 import {Switch} from "@/components/ui/switch";
 import {algorithmInfo, isJwtAlgorithm, parseJsonObject, parseJwt, signJwt, verifyJwt, type JwtAlgorithm, type JwtMode, type JwtParseError, type VerifyState} from "@/lib/jwt";
@@ -218,7 +218,7 @@ export default function JwtEncoderDecoder() {
 					<h1 className="font-heading font-bold text-3xl sm:text-4xl tracking-tight">JWT Encoder/Decoder</h1>
 
 					<p className="text-muted-foreground leading-relaxed">
-						Decode, build and sign JSON Web Tokens: paste one to split it into its header, payload and signature, or flip the switch below to Encode and rebuild it from edited parts with HS256, RS256, ES256 and friends. Example: <InlineCode className="whitespace-nowrap">eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI0MiJ9.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c</InlineCode>. Everything runs in your browser, the token and any key you enter never leave your device.
+						Decode, build and sign JSON Web Tokens: paste one to split it into its header, payload and signature, or flip the switch below to Encode and rebuild it from edited parts with HS256, RS256, ES256... Example: <InlineCode className="whitespace-nowrap">eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI0MiJ9.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c</InlineCode>. Everything runs in your browser, the token and any key you enter never leave your device.
 					</p>
 				</header>
 
