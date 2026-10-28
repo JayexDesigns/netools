@@ -16,9 +16,9 @@ Netools is a free, open-source collection of network utilities that run directly
 
 ## Self-hosting
 
-Netools is a static site, shipped as a single Docker image served by nginx. You do not need Node, pnpm or a build step — just a machine with Docker.
+Netools is a static site, shipped as a single Docker image served by nginx. You do not need Node, pnpm or a build step - just a machine with Docker.
 
-The image is published on Docker Hub as [`jayexdesigns/netools`](https://hub.docker.com/r/jayexdesigns/netools) and updated automatically on every push to `main`.
+The image is published on Docker Hub as [`jayexdesigns/netools`](https://hub.docker.com/r/jayexdesigns/netools) and updated automatically on every push to `main`. It is multi-arch (`linux/amd64`, `linux/arm64` and `linux/arm/v7`), so it runs on x86-64 servers as well as 64-bit and 32-bit Raspberry Pis - Docker automatically pulls the variant matching your machine.
 
 ### Run with `docker run`
 
@@ -95,8 +95,8 @@ tests/          Vitest suites mirroring src/ (library tests on node, UI tests on
 
 The [Deploy workflow](.github/workflows/deploy.yml) runs on every push to `main` (and on `v*` tags). It first verifies the app (build, lint, test), then:
 
-- **GitHub Pages** — publishes the static bundle, built with the `/<repo>/` base path, to `https://jayexdesigns.github.io/netools/`.
-- **Docker Hub** — builds and pushes `jayexdesigns/netools` tagged `latest`, `main`, the semver of `v*` tags and the commit SHA.
+- **GitHub Pages** - publishes the static bundle, built with the `/<repo>/` base path, to `https://jayexdesigns.github.io/netools/`.
+- **Docker Hub** - builds and pushes the multi-platform `jayexdesigns/netools` image (`linux/amd64`, `linux/arm64`, `linux/arm/v7`) tagged `latest`, `main`, the semver of `v*` tags and the commit SHA.
 
 One-time setup:
 

@@ -1,7 +1,11 @@
 # syntax=docker/dockerfile:1
 
 # --- Build stage: compile the app into static assets ---
-FROM node:24-alpine AS build
+# Pinned to the platform of the machine running the build: the output is a static
+# bundle with no architecture-specific bits, so the Node build runs natively (no
+# emulation) even when the image targets arm64/arm, and its layers are shared by
+# every platform in a multi-platform build
+FROM --platform=$BUILDPLATFORM node:24-alpine AS build
 
 WORKDIR /app
 
